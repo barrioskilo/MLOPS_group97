@@ -14,6 +14,4 @@ For the framework part, Kornia framework for Computer Vision has been chosen. Th
 The selected data to work with in this project is a [Pistachio Image](https://www.kaggle.com/datasets/muratkokludataset/pistachio-image-dataset/code) dataset from Kaggle which includes a total of 2148 images. There are 2 types of pistachios: 1232 of Kirmizi pitachios type and 916 of Siirt pistachios type.
 
 ### Models
-We will work on an image classification task on the pistachio data using some CNN architectures. The models that we will be using 
-
-We intend to perform an image classification task on the rice data using some type of CNN. We expect to be using different models from the TIMM framework such as ConvNeXt, MobileNet V3, ResNet and VGG.
+We will work on an image classification task on the pistachio data using some of these models: CNN, ResNet50, VGG16, MobileNet and EfficientNet.
