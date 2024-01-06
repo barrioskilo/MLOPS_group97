@@ -5,7 +5,6 @@
 ## Project Description
 
 ### Goal
-The overall goal of the project consists of applying all the different material that has been taught in the "02476 Machine Learning Operations Jan 24" course of the DTU. These will be applied to an image classication problem related to pistachios by focusing on data augmentation tasks while using one of the given frameworks to do so. Finally, a presentation about our findings and the submission of the final report will be made.
 The overall goal of the project consists of applying all the different material that has been taught in the "02476 Machine Learning Operations Jan 24" course of the DTU. These will be applied to an image classification problem related to pistachios by focusing on data augmentation tasks while using one of the given frameworks to do so. Finally, a presentation about our findings and the submission of the final report will be made.
 
 ### Framework
