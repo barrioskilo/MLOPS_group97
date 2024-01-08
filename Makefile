@@ -27,7 +27,10 @@ requirements: test_environment
 
 ## Make Dataset
 data: requirements
-	$(PYTHON_INTERPRETER) src/data/make_dataset.py data/raw data/processed
+	$(PYTHON_INTERPRETER) src/data/make_dataset.py data/raw data/processed/processed_data.pt
+
+train: requirements
+	$(PYTHON_INTERPRETER) src/models/train_model.py train --lr 1e-4
 
 ## Delete all compiled Python files
 clean:
