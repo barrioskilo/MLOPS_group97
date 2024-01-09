@@ -18,10 +18,17 @@ def main(input_filepath, output_filepath):
     logger = logging.getLogger(__name__)
     logger.info('processing pistachio images')
 
-    # Define transformation pipeline
+    # Calculate mean and std of the dataset
+    dataset = datasets.ImageFolder(root=input_filepath, transform=transforms.ToTensor())
+    loader = torch.utils.data.DataLoader(dataset, batch_size=len(dataset), num_workers=1)
+    data = next(iter(loader))
+    mean = data[0].mean(dim=[0, 2, 3])
+    std = data[0].std(dim=[0, 2, 3])
+
+    # Use the calculated mean and std in the Normalize transformation
     transform = transforms.Compose([
         transforms.ToTensor(),
-        transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])  # Adjust mean and std as needed
+        transforms.Normalize(mean=mean.tolist(), std=std.tolist())
     ])
 
     # Load and preprocess images from both classes
