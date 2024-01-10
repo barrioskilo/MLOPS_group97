@@ -27,16 +27,16 @@ requirements: test_environment
 
 ## Make Dataset
 data: requirements
-	$(PYTHON_INTERPRETER) src/data/make_dataset.py data/raw data/processed/processed_data.pt
+	$(PYTHON_INTERPRETER) pistachio/src/data/make_dataset.py data/raw data/processed/processed_data.pt
 
 train: requirements
-	$(PYTHON_INTERPRETER) src/models/train_model.py train --lr 1e-4
+	$(PYTHON_INTERPRETER) pistachio/src/models/train_model.py train --lr 1e-4
 
 predict: requirements
-	$(PYTHON_INTERPRETER) src/models/predict_model.py models/pistachio_model.pt data/processed/example_images.npy
+	$(PYTHON_INTERPRETER) pistachio/src/models/predict_model.py models/pistachio_model.pt data/processed/example_images.npy
 
 visualize: requirements
-	$(PYTHON_INTERPRETER) src/visualization/visualize.py models/pistachio_model.pt data/processed/processed_data.pt
+	$(PYTHON_INTERPRETER) pistachio/src/visualization/visualize.py models/pistachio_model.pt data/processed/processed_data.pt
 
 ## Delete all compiled Python files
 clean:

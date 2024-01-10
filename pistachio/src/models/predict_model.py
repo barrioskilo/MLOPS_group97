@@ -23,7 +23,7 @@ import click
 import torch
 import numpy as np
 from torch.utils.data import DataLoader, TensorDataset
-from models.model import MyAwesomeModel  # Import your model class here
+from pistachio.models.model import MyAwesomeModel  # Import your model class here
 
 def load_data_from_numpy(file_path):
     """ Load data from a numpy file and preprocess for MyAwesomeModel. """

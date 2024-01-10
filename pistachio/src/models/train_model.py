@@ -3,11 +3,11 @@ import click
 import torch
 from torch import nn, optim
 from torch.utils.data import DataLoader
-from models.model import MyAwesomeModel
+from pistachio.models.model import MyAwesomeModel
 
 # Function to prepare data
 def prepare_data():
-    processed_data = torch.load('/Users/anderbarriocampos/Desktop/MLOPS_group97/data/processed/processed_data.pt')
+    processed_data = torch.load('data/processed/processed_data.pt')
     data = processed_data['data']
     labels = processed_data['labels']
 
@@ -59,7 +59,7 @@ def train(lr, epochs):
         print(f"Epoch {epoch+1}/{epochs}, Loss: {total_loss/len(train_loader)}")
 
     # Save the trained model
-    torch.save(model.state_dict(), 'models/pistachio_model.pt')
+    torch.save(model.state_dict(), 'pistachio/models/pistachio_model.pt')
 
 @click.command()
 @click.argument("model_checkpoint")
