@@ -35,6 +35,9 @@ train: requirements
 predict: requirements
 	$(PYTHON_INTERPRETER) src/models/predict_model.py models/pistachio_model.pt data/processed/example_images.npy
 
+visualize: requirements
+	$(PYTHON_INTERPRETER) src/visualization/visualize.py models/pistachio_model.pt data/processed/processed_data.pt
+
 ## Delete all compiled Python files
 clean:
 	find . -type f -name "*.py[co]" -delete
