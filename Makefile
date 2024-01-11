@@ -30,7 +30,7 @@ data: requirements
 	$(PYTHON_INTERPRETER) pistachio/src/data/make_dataset.py data/raw data/processed/processed_data.pt
 
 train: requirements
-	$(PYTHON_INTERPRETER) pistachio/src/models/train_model.py train --lr 1e-4
+	$(PYTHON_INTERPRETER) pistachio/src/models/train_model.py
 
 predict: requirements
 	$(PYTHON_INTERPRETER) pistachio/src/models/predict_model.py models/pistachio_model.pt data/processed/example_images.npy

@@ -5,14 +5,27 @@ from torch import nn, optim
 from torch.utils.data import DataLoader
 from pistachio.models.model import MyAwesomeModel
 
+import hydra
+from omegaconf import DictConfig, OmegaConf
+
+
 # Function to prepare data
-def prepare_data():
+# Function to prepare shuffled data
+
+def prepare_data(random_seed, portion):
     processed_data = torch.load('data/processed/processed_data.pt')
     data = processed_data['data']
     labels = processed_data['labels']
 
+    # Shuffle data
+    indices = list(range(len(data)))
+    torch.manual_seed(random_seed)  # Set a seed for reproducibility
+    torch.randperm(len(indices))
+    data = [data[i] for i in indices]
+    labels = [labels[i] for i in indices]
+
     # Create train/test indices
-    split_index = int(0.8 * len(data))
+    split_index = int(portion * len(data))
     train_data, train_labels = data[:split_index], labels[:split_index]
     test_data, test_labels = data[split_index:], labels[split_index:]
 
@@ -22,6 +35,7 @@ def prepare_data():
 
     return train_loader, test_loader
 
+'''
 @click.group()
 def cli():
     """Command line interface."""
@@ -30,14 +44,23 @@ def cli():
 @click.command()
 @click.option("--lr", default=1e-3, help="learning rate to use for training")
 @click.option("--epochs", default=10, help="number of training epochs")
-def train(lr, epochs):
+'''
+
+@hydra.main(version_base=None, config_path="conf", config_name="config")
+
+def train(cfg : DictConfig):
     """Train a model on MNIST."""
     print("Training day and night")
-    print(f"Learning rate: {lr}")
-    print(f"Number of epochs: {epochs}")
+    print(OmegaConf.to_yaml(cfg))
+    lr = cfg.hyperparameters.learning_rate
+    epochs = cfg.hyperparameters.epochs
+    random_seed = cfg.data.random_seed
+    portion = cfg.data.portion
+    #print(f"Learning rate: {lr}")
+    #print(f"Number of epochs: {epochs}")
 
     # Load the data
-    train_loader, _ = prepare_data()
+    train_loader, _ = prepare_data(random_seed, portion)
 
     # Initialize model, loss function, and optimizer
     model = MyAwesomeModel()  # Adjust input_size and hidden_size accordingly
@@ -89,10 +112,12 @@ def evaluate(model_checkpoint):
     accuracy = correct / total
     print(f"Test Accuracy: {accuracy*100:.2f}%")
 
+'''
 cli.add_command(train)
 cli.add_command(evaluate)
+'''
 
 if __name__ == "__main__":
-    cli()
+    train()
 
 
