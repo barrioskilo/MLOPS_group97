@@ -8,6 +8,19 @@ from pistachio.models.model import MyAwesomeModel
 import hydra
 from omegaconf import DictConfig, OmegaConf
 
+import wandb
+
+args = {
+    "log_interval": 50,
+    "architecture": "CNN",
+    "dataset": "pistachio"
+}
+
+wandb.init(
+    project="pistachio",
+    config=args
+    )
+
 
 # Function to prepare data
 # Function to prepare shuffled data
@@ -47,7 +60,6 @@ def cli():
 '''
 
 @hydra.main(version_base=None, config_path="conf", config_name="config")
-
 def train(cfg : DictConfig):
     """Train a model on MNIST."""
     print("Training day and night")
@@ -67,16 +79,21 @@ def train(cfg : DictConfig):
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr=lr)
 
+    # Magic
+    wandb.watch(model, log_freq=100)
+
     # Training loop
     for epoch in range(epochs):
         model.train()
         total_loss = 0
-        for inputs, labels in train_loader:
+        for batch_idx, (inputs, labels) in enumerate(train_loader):
             optimizer.zero_grad()
             outputs = model(inputs)
             loss = criterion(outputs, labels)
             loss.backward()
             optimizer.step()
+            if batch_idx % args["log_interval"] == 0:
+                wandb.log({"loss": loss})
             total_loss += loss.item()
 
         print(f"Epoch {epoch+1}/{epochs}, Loss: {total_loss/len(train_loader)}")
