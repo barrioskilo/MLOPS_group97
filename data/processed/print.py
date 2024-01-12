@@ -40,3 +40,10 @@ if len(indice_valor_positivo[0]) > 0:
     print(data_tensor[indice_valor_positivo])
 else:
     print("\nNo hay valores positivos en el conjunto de datos.")
+
+# Get the shape of one image
+shape_of_one_image = data_tensor[0].shape
+
+# Print the shape
+print("\nShape of one image:", shape_of_one_image)
+

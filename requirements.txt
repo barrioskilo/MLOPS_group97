@@ -16,6 +16,8 @@ matplotlib
 scikit-learn
 pytest
 hydra-core 
+wandb
+coverage
 
 
 # backwards compatibility

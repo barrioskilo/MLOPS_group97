@@ -38,6 +38,10 @@ predict: requirements
 visualize: requirements
 	$(PYTHON_INTERPRETER) pistachio/src/visualization/visualize.py models/pistachio_model.pt data/processed/processed_data.pt
 
+tests: requirements
+	pytest -s tests/
+	coverage report -m
+	
 ## Delete all compiled Python files
 clean:
 	find . -type f -name "*.py[co]" -delete
