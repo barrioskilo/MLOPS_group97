@@ -1,8 +1,7 @@
 steps:
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/mlops97/mlops-group97:<tag>', '.']
+    args: ['build', '-t', 'gcr.io/mlops97/docker_image', '.']
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/mlops97/mlops-group97:<tag>']
+    args: ['push', 'gcr.io/mlops97/docker_image']
 
-images:
-  - 'gcr.io/mlops97/mlops-group97:<tag>'
+
