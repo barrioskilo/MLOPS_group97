@@ -1,5 +1,12 @@
 import torch
 import numpy as np
+import torch
+from pistachio.models.model import MyAwesomeModel  # Import your model class here
+from torchvision import datasets, transforms
+import os
+from PIL import Image
+
+
 
 def create_example_images(input_file, output_file, num_images=10):
     # Load the processed data
@@ -18,12 +25,50 @@ def create_example_images(input_file, output_file, num_images=10):
     print(f"Saved {num_images} images to {output_file}")
 
 
+def torch_preprocess(input_filepath):
+    # Load and preprocess a single image for prediction
+    transform = transforms.Compose([
+        transforms.ToTensor(),
+        # Use the mean and std calculated during training for normalization
+        transforms.Normalize(mean=[-1.8395e-07, -4.9387e-07, -6.6195e-08], std=[1.0000, 1.0000, 1.0000])
+    ])
 
-import click
-import torch
-import numpy as np
-from torch.utils.data import DataLoader, TensorDataset
-from pistachio.models.model import MyAwesomeModel  # Import your model class here
+    # Open the image using PIL
+    img = Image.open(input_filepath)
+
+    # Apply the transformation
+    img_tensor = transform(img)
+
+    # Add a batch dimension to the tensor
+    img_tensor = img_tensor.unsqueeze(0)
+
+    return img_tensor
+
+model = None
+
+def get_model(model_path):
+    global model
+    if model is None:
+        model = MyAwesomeModel()  # Adjust according to your model
+        model.load_state_dict(torch.load(model_path))       
+
+def predict(input_filepath, model_path):
+    # Load the model
+    get_model(model_path)
+
+    # Preprocess the data
+    predict_data_tensor = torch_preprocess(input_filepath)
+
+    # Make predictions
+    with torch.no_grad():
+        prediction = model(predict_data_tensor)
+
+    # Get the predicted class index
+    _, predicted_class = torch.max(prediction, 1)
+
+    return predicted_class.item()
+
+'''
 
 def load_data_from_numpy(file_path):
     """ Load data from a numpy file and preprocess for MyAwesomeModel. """
@@ -66,3 +111,5 @@ def predict(model_path, data_path):
 if __name__ == "__main__":
     create_example_images('data/processed/processed_data.pt', 'data/processed/example_images.npy')
     predict()
+
+'''

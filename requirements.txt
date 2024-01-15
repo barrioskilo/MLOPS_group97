@@ -18,6 +18,8 @@ pytest
 hydra-core 
 wandb
 coverage
+python-multipart
+pydantic
 
 
 # backwards compatibility
