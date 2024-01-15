@@ -1,15 +1,18 @@
-# tests/test_model.py
-import pytest
+# tests/test_model2.py
 import torch
-from pistachio.models.model import MyAwesomeModel  # Import your model class here
+from pistachio.models.model import MyAwesomeModel
 
-def test_error_on_wrong_shape():
+def test_model_architecture():
     # Instantiate your model
     model = MyAwesomeModel()
 
-    # Create input tensor with incorrect shape
-    wrong_shape_input = torch.randn(1, 2, 3)  # Assuming the expected shape is [3, 600, 600]
+    # Assert that the model is an instance of nn.Module
+    assert isinstance(model, torch.nn.Module), "The model should be an instance of torch.nn.Module"
 
-    # Check if ValueError is raised with the expected message
-    with pytest.raises(ValueError, match='Expected input to be a 4D tensor'):
-        model(wrong_shape_input)
+    # Assert the existence of model components
+    assert hasattr(model, 'flatten'), "The model should have a 'flatten' layer"
+    assert hasattr(model, 'fc1'), "The model should have an 'fc1' layer"
+    assert hasattr(model, 'relu'), "The model should have a 'relu' layer"
+    assert hasattr(model, 'fc2'), "The model should have an 'fc2' layer"
+    assert hasattr(model, 'fc3'), "The model should have an 'fc3' layer"
+

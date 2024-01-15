@@ -6,7 +6,7 @@ import torch
 import torch.nn as nn
 from torchvision import models, transforms
 from torch.autograd import Variable
-from models.model import MyAwesomeModel  # Import your model class here
+from pistachio.models.model import MyAwesomeModel  # Import your model class here
 
 # Function to load preprocessed data
 def load_processed_data(data_path):
@@ -55,7 +55,7 @@ def visualize_features(features, labels):
     plt.show()
 
 # Set the path to your pre-trained PyTorch model
-model_path = 'models/pistachio_model.pt'
+model_path = 'pistachio/models/pistachio_model.pt'
 model = MyAwesomeModel()  # Instantiate your model
 model.load_state_dict(torch.load(model_path))
 model.eval()

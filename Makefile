@@ -34,14 +34,17 @@ train: requirements
 	$(PYTHON_INTERPRETER) pistachio/src/models/train_model.py
 
 predict: requirements
-	$(PYTHON_INTERPRETER) pistachio/src/models/predict_model.py models/pistachio_model.pt data/processed/example_images.npy
+	$(PYTHON_INTERPRETER) pistachio/src/models/predict_model.py pistachio/models/pistachio_model.pt data/processed/example_images.npy
 
 visualize: requirements
-	$(PYTHON_INTERPRETER) pistachio/src/visualization/visualize.py models/pistachio_model.pt data/processed/processed_data.pt
+	$(PYTHON_INTERPRETER) pistachio/src/visualization/visualize.py pistachio/models/pistachio_model.pt data/processed/processed_data.pt
 
 tests: requirements
 	pytest -s tests/
-	coverage report -m
+	
+coverage: requirements
+	coverage report -m --omit="tests/*,test_environment.py"
+	
 	
 ## Delete all compiled Python files
 clean:
