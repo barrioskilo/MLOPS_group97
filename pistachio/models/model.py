@@ -1,5 +1,6 @@
 # model.py
 from torch import nn
+from torch import Tensor
 
 class MyAwesomeModel(nn.Module):
     """My awesome model."""
@@ -11,7 +12,7 @@ class MyAwesomeModel(nn.Module):
         self.fc2 = nn.Linear(128, 64)
         self.fc3 = nn.Linear(64, 2)  # 2 classes for binary classification
 
-    def forward(self, x):
+    def forward(self, x: Tensor):
         x = self.flatten(x)
         x = self.fc1(x)
         x = self.relu(x)
@@ -19,3 +20,4 @@ class MyAwesomeModel(nn.Module):
         x = self.relu(x)
         x = self.fc3(x)
         return x
+
