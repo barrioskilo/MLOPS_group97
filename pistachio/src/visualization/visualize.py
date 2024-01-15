@@ -55,7 +55,7 @@ def visualize_features(features, labels):
     plt.show()
 
 # Set the path to your pre-trained PyTorch model
-model_path = 'pistachio/models/pistachio_model.pt'
+model_path = 'pistachio/models/pistachio_model.pth'
 model = MyAwesomeModel()  # Instantiate your model
 model.load_state_dict(torch.load(model_path))
 model.eval()

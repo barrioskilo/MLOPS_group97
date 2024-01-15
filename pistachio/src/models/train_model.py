@@ -99,7 +99,7 @@ def train(cfg : DictConfig):
         print(f"Epoch {epoch+1}/{epochs}, Loss: {total_loss/len(train_loader)}")
 
     # Save the trained model
-    torch.save(model.state_dict(), 'pistachio/models/pistachio_model.pt')
+    torch.save(model.state_dict(), 'pistachio/models/pistachio_model.pth')
 
 @click.command()
 @click.argument("model_checkpoint")
