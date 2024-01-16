@@ -39,6 +39,9 @@ train_lightning: requirements
 predict: requirements
 	$(PYTHON_INTERPRETER) pistachio/src/models/predict_model.py pistachio/models/pistachio_model.pth data/processed/example_images.npy
 
+predict_lightning: requirements
+	$(PYTHON_INTERPRETER) pistachio/src/models/lightning_predict.py
+
 visualize: requirements
 	$(PYTHON_INTERPRETER) pistachio/src/visualization/visualize.py pistachio/models/pistachio_model.pth data/processed/processed_data.pt
 
