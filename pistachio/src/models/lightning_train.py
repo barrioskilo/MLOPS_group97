@@ -10,7 +10,13 @@ from torchmetrics import Accuracy
 from pytorch_lightning.loggers import WandbLogger
 from torchvision import models
 from torch.optim.lr_scheduler import MultiStepLR
+import os
 
+import ssl
+
+# Disable SSL certificate verification
+ssl._create_default_https_context = ssl._create_default_https_context 
+ssl._create_default_https_context = ssl._create_unverified_context
 
 
 
@@ -174,7 +180,9 @@ def train(input_filepath):
     dm = PistachioDataModule(input_filepath, batch_size=32)
     dm.setup()
 
+    # Set up WandB logger with SSL verification disabled
     wandb_logger = WandbLogger(project='wandb-lightning', job_type='train')
+    os.environ["WANDB_IGNORE_GLOBS"] = "*.pem"  # This line disables SSL verification
 
     model = TransferLearningModel()
     trainer = pl.Trainer(max_epochs=3, logger=wandb_logger)

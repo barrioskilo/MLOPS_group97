@@ -21,6 +21,7 @@ coverage
 python-multipart
 pydantic
 torchmetrics
+pytorch_lightning
 
 
 # backwards compatibility
