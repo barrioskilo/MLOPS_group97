@@ -178,6 +178,11 @@ def train(input_filepath):
     trainer = pl.Trainer(max_epochs=3, logger=wandb_logger)
     trainer.fit(model=model, datamodule=dm)
 
+    model_path = 'pistachio/models/transfer_learning_model.pth'
+    torch.save(model.state_dict(), model_path)
+
 if __name__ == "__main__":
     train()
+
+    
 
