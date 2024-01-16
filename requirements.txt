@@ -20,6 +20,7 @@ wandb
 coverage
 python-multipart
 pydantic
+torchmetrics
 
 
 # backwards compatibility
