@@ -17,7 +17,7 @@ RUN pip install 'dvc[gs]'
 
 RUN dvc init --no-scm
 COPY .dvc/config .dvc/config
-COPY *.dvc *.dvc
+COPY data.dvc data.dvc
 RUN dvc config core.no_scm true
 RUN dvc pull
 
