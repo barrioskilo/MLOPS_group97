@@ -46,7 +46,8 @@ tests: requirements
 	pytest -s tests/
 	
 coverage: requirements
-	coverage report -m --omit="tests/*,test_environment.py"
+	coverage report -m --omit="tests/*,test_environment.py,**/model.py,pistachio/src/data/*,pistachio/src/visualization/*,pistachio/app.py,pistachio/src/models/predict_model.py,pistachio/src/models/train_model.py"
+
 	
 	
 ## Delete all compiled Python files

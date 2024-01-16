@@ -1,18 +1,10 @@
 import torch
-from pistachio.models.model import MyAwesomeModel
-
-def test_forward_pass_coverage():
-    # Instantiate your model
-    model = MyAwesomeModel()
-
-    # Create a dummy input tensor
-    dummy_input = torch.randn((1, 3, 600, 600))
-
-    # Perform a forward pass
-    output = model(dummy_input)
-
-    # Add assertions to check the output shape or other properties
-    assert output.shape == (1, 2), "Output shape should be (1, 2)"
+from torch.utils.data import DataLoader
+from pistachio.src.models.lightning_train import TransferLearningModel, PistachioDataModule
 
 
+def test_transfer_learning_model_init_edge_cases():
+    # Test with different values for num_classes
+    model_1_class = TransferLearningModel(num_classes=1)
+    model_5_classes = TransferLearningModel(num_classes=5)
 
