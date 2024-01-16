@@ -10,7 +10,13 @@ COPY requirements.txt requirements.txt
 COPY pyproject.toml pyproject.toml
 COPY setup.py setup.py
 COPY pistachio/ pistachio/
-COPY data/ data/
+#COPY data/ data/
+
+RUN dvc init --no-scm
+COPY .dvc/config .dvc/config
+COPY *.dvc *.dvc
+RUN dvc config core.no_scm true
+RUN dvc pull
 
 
 WORKDIR /
@@ -19,7 +25,14 @@ RUN pip install . --no-deps --no-cache-dir
 
 ENV PYTHONPATH pistachio/
 
-RUN python pistachio/src/data/make_dataset.py data/raw data/processed/processed_data.pt
+# Pull data from DVC remote
+# RUN dvc pull
 
-ENTRYPOINT ["python", "-u", "pistachio/src/models/train_model.py"]
-CMD ["train", "--lr", "1e-4"]
+# Install DVC with GCP support
+RUN pip install 'dvc[gs]'
+
+ENTRYPOINT ["python", "-u", "pistachio/src/models/lightning_train.py"]
+CMD ["data/raw"]
+
+
+
