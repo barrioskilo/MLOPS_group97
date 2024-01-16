@@ -44,6 +44,9 @@ outs:
       remote_storage:
         etag: 08a49fc2f09edf83031001
         version_id: '1705316463972260'
+  - relpath: raw.zip
+    md5: 70a975de5366251679ba704522891a6a
+    size: 25771517
   - relpath: raw/Kirmizi_Pistachio/kirmizi (1).jpg
     md5: 3864dbcfe531bfad7ba79128d2c8e721
     size: 22307
