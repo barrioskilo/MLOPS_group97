@@ -172,6 +172,8 @@ def train(input_filepath):
     dm = PistachioDataModule(input_filepath, batch_size=32)
     dm.setup()
 
+    wandb.login(key="e8a7dda19f70f30af4c771281980c6e08b856d96")
+
     wandb_logger = WandbLogger(project='wandb-lightning', job_type='train')
 
     model = TransferLearningModel()
