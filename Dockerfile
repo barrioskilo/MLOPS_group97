@@ -12,18 +12,6 @@ COPY setup.py setup.py
 COPY pistachio/ pistachio/
 #COPY data/ data/
 
-# Install DVC with GCP support
-RUN pip install 'dvc[gs]'
-
-RUN dvc init --no-scm
-COPY .dvc/config .dvc/config
-COPY data.dvc data.dvc
-RUN dvc config core.no_scm true
-RUN dvc pull
-
-
-# Unzip files
-RUN unzip '*.dvc/data/raw.zip' -d 'data/'
 
 WORKDIR /
 RUN pip install -r requirements.txt --no-cache-dir
@@ -37,7 +25,7 @@ ENV PYTHONPATH pistachio/
 
 
 ENTRYPOINT ["python", "-u", "pistachio/src/models/lightning_train.py"]
-CMD ["data/raw"]
+CMD ["/gs/mlops97_data_storage/data/raw"]
 
 
 
