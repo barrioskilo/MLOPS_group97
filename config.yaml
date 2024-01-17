@@ -1,9 +1,7 @@
-# config_gpu.yaml
+# config_cpu.yaml
 workerPoolSpecs:
     machineSpec:
-        machineType: n1-standard-8
-        acceleratorType: NVIDIA_TESLA_T4 
-        acceleratorCount: 1
+        machineType: n1-highmem-2
     replicaCount: 1
     containerSpec:
-        imageUri: gcr.io/mlops97/<docker-img>
+        imageUri: gcr.io/mlops97/docker_image@sha256:ee01d875cbf5741f7ae03ced9758cd79ea10971b66b9a76e67e0b06f8fa49f1e
