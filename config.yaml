@@ -4,6 +4,6 @@ workerPoolSpecs:
         machineType: n1-highmem-2
     replicaCount: 1
     containerSpec:
-        imageUri: gcr.io/mlops97/docker_image@sha256:9c736602afa55b4fe2da9a95fc9cbf2f631cfc6bbbd40ad16e27206014c0d6af
+        imageUri: gcr.io/mlops97/docker_image@sha256:09aa0d3540ea67bfab0d16280ed43a5fba49409abe17fe9c4cb7b544a6814fbe
 
 
