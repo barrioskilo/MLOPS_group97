@@ -50,36 +50,36 @@ end of the project.
 
 ### Week 1
 
-* [ ] Create a git repository
-* [ ] Make sure that all team members have write access to the github repository
+* [ok] Create a git repository
+* [ok] Make sure that all team members have write access to the github repository
 * [ ] Create a dedicated environment for you project to keep track of your packages
-* [ ] Create the initial file structure using cookiecutter
-* [ ] Fill out the `make_dataset.py` file such that it downloads whatever data you need and
-* [ ] Add a model file and a training script and get that running
-* [ ] Remember to fill out the `requirements.txt` file with whatever dependencies that you are using
-* [ ] Remember to comply with good coding practices (`pep8`) while doing the project
-* [ ] Do a bit of code typing and remember to document essential parts of your code
-* [ ] Setup version control for your data or part of your data
-* [ ] Construct one or multiple docker files for your code
-* [ ] Build the docker files locally and make sure they work as intended
-* [ ] Write one or multiple configurations files for your experiments
-* [ ] Used Hydra to load the configurations and manage your hyperparameters
+* [ok] Create the initial file structure using cookiecutter
+* [ok] Fill out the `make_dataset.py` file such that it downloads whatever data you need and
+* [ok] Add a model file and a training script and get that running
+* [ok] Remember to fill out the `requirements.txt` file with whatever dependencies that you are using
+* [ok] Remember to comply with good coding practices (`pep8`) while doing the project
+* [ok] Do a bit of code typing and remember to document essential parts of your code
+* [ok] Setup version control for your data or part of your data
+* [ok] Construct one or multiple docker files for your code
+* [ok] Build the docker files locally and make sure they work as intended
+* [ok] Write one or multiple configurations files for your experiments
+* [ok] Used Hydra to load the configurations and manage your hyperparameters
 * [ ] When you have something that works somewhat, remember at some point to to some profiling and see if
       you can optimize your code
-* [ ] Use Weights & Biases to log training progress and other important metrics/artifacts in your code. Additionally,
+* [ok] Use Weights & Biases to log training progress and other important metrics/artifacts in your code. Additionally,
       consider running a hyperparameter optimization sweep.
 * [ ] Use Pytorch-lightning (if applicable) to reduce the amount of boilerplate in your code
 
 ### Week 2
 
-* [ ] Write unit tests related to the data part of your code
-* [ ] Write unit tests related to model construction and or model training
-* [ ] Calculate the coverage.
-* [ ] Get some continuous integration running on the github repository
-* [ ] Create a data storage in GCP Bucket for you data and preferable link this with your data version control setup
+* [ok] Write unit tests related to the data part of your code
+* [ok] Write unit tests related to model construction and or model training
+* [ok] Calculate the coverage.
+* [ok] Get some continuous integration running on the github repository
+* [ok] Create a data storage in GCP Bucket for you data and preferable link this with your data version control setup
 * [ ] Create a trigger workflow for automatically building your docker images
 * [ ] Get your model training in GCP using either the Engine or Vertex AI
-* [ ] Create a FastAPI application that can do inference using your model
+* [ok] Create a FastAPI application that can do inference using your model
 * [ ] If applicable, consider deploying the model locally using torchserve
 * [ ] Deploy your model in GCP using either Functions or Run as the backend
 
@@ -94,9 +94,9 @@ end of the project.
 
 ### Additional
 
-* [ ] Revisit your initial project description. Did the project turn out as you wanted?
-* [ ] Make sure all group members have a understanding about all parts of the project
-* [ ] Uploaded all your code to github
+* [ok] Revisit your initial project description. Did the project turn out as you wanted?
+* [ok] Make sure all group members have a understanding about all parts of the project
+* [ok] Uploaded all your code to github
 
 ## Group information
 
@@ -105,31 +105,21 @@ end of the project.
 >
 > Answer:
 
---- question 1 fill here ---
+97
 
 ### Question 2
 > **Enter the study number for each member in the group**
 >
-> Example:
->
-> *sXXXXXX, sXXXXXX, sXXXXXX*
->
 > Answer:
 
---- question 2 fill here ---
+s231938, s231919, s231813, s180768
 
 ### Question 3
 > **What framework did you choose to work with and did it help you complete the project?**
 >
-> Answer length: 100-200 words.
->
-> Example:
-> *We used the third-party framework ... in our project. We used functionality ... and functionality ... from the*
-> *package to do ... and ... in our project*.
->
 > Answer:
 
---- question 3 fill here ---
+The framework that our team has selected for the implementation of the project has been Torchvision. The decision of using this framework was driven by its integration with PyTorch and the wide availability of pre-trained models. Our project is focussing on the binary classification of pistachio images, where we have two classes (Kirmizi and Siirt). Those different models provided by the framework were very suitable for our transfer learning process. We opted for the ResNet18 pre-trained model for the completion of this project as its architecture is widely known, its performance in extracting features is really solid and because of its success in many image classification tasks.
 
 ## Coding environment
 
@@ -170,11 +160,9 @@ end of the project.
 > **Did you implement any rules for code quality and format? Additionally, explain with your own words why these**
 > **concepts matters in larger projects.**
 >
-> Answer length: 50-100 words.
->
 > Answer:
 
---- question 6 fill here ---
+Yes, we implemented rules for code quality and format using Ruff. These rules include import sorting, conventions, errors and warnings to ensure consistent and readable code. In larger projects, these concepts may have a notable importance. A big project will have many people involved. Those people will naturally have a different type of coding, thus maintaining code quality and format is crucial for collaboration and maintainability. It can improve the understanding of the code, reduce errors and also achieve an unified coding style.
 
 ## Version control
 

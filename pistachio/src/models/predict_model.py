@@ -1,17 +1,17 @@
-import torch
+import os
+
 import numpy as np
 import torch
-from pistachio.models.model import MyAwesomeModel  # Import your model class here
-from torchvision import datasets, transforms
-import os
 from PIL import Image
+from torchvision import datasets, transforms
 
+from pistachio.models.model import MyAwesomeModel  # Import your model class here
 
 
 def create_example_images(input_file, output_file, num_images=10):
     # Load the processed data
     processed_data = torch.load(input_file)
-    data = processed_data['data']
+    data = processed_data["data"]
 
     # Select a subset of images
     if num_images > len(data):
@@ -27,11 +27,16 @@ def create_example_images(input_file, output_file, num_images=10):
 
 def torch_preprocess(input_filepath):
     # Load and preprocess a single image for prediction
-    transform = transforms.Compose([
-        transforms.ToTensor(),
-        # Use the mean and std calculated during training for normalization
-        transforms.Normalize(mean=[-1.8395e-07, -4.9387e-07, -6.6195e-08], std=[1.0000, 1.0000, 1.0000])
-    ])
+    transform = transforms.Compose(
+        [
+            transforms.ToTensor(),
+            # Use the mean and std calculated during training for normalization
+            transforms.Normalize(
+                mean=[-1.8395e-07, -4.9387e-07, -6.6195e-08],
+                std=[1.0000, 1.0000, 1.0000],
+            ),
+        ]
+    )
 
     # Open the image using PIL
     img = Image.open(input_filepath)
@@ -44,13 +49,16 @@ def torch_preprocess(input_filepath):
 
     return img_tensor
 
+
 model = None
+
 
 def get_model(model_path):
     global model
     if model is None:
         model = MyAwesomeModel()  # Adjust according to your model
-        model.load_state_dict(torch.load(model_path))       
+        model.load_state_dict(torch.load(model_path))
+
 
 def predict(input_filepath, model_path):
     # Load the model
@@ -67,6 +75,7 @@ def predict(input_filepath, model_path):
     _, predicted_class = torch.max(prediction, 1)
 
     return predicted_class.item()
+
 
 '''
 

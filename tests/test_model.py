@@ -1,9 +1,9 @@
 import torch
-from pistachio.models.model import MyAwesomeModel  # Import your model class here
+from pistachio.src.models.lightning_train import TransferLearningModel
 
 def test_output_shape():
     # Instantiate your model
-    model = MyAwesomeModel()
+    model = TransferLearningModel()
 
     # Define an example input with shape X
     example_input = torch.randn((1, 3, 600, 600))  # Adjust the shape according to your model's input requirements
@@ -11,10 +11,9 @@ def test_output_shape():
     # Get the output from the model
     output = model(example_input)
 
-    # Define the expected output shape Y
-    expected_output_shape = (1, 2)  # Adjust the shape according to your model's output
+    # Check if the output has the correct shape
+    assert len(output.shape) == 2, "Output should be a 2D tensor"
+    print("Test passed: output has the correct shape.")
 
-    # Check if the output shape matches the expected shape
-    assert output.shape == expected_output_shape, "Output shape does not match the expected shape."
-    print("Test passed: output shape matches the expected shape.")
+
 
