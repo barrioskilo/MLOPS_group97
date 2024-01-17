@@ -1,6 +1,6 @@
 steps:
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/mlops97/docker_image', '.']
+    args: ['build', '-f', 'training.dockerfile', '-t', 'gcr.io/mlops97/docker_image', '.']
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/mlops97/docker_image']
   # Deploy container image to Cloud Run
