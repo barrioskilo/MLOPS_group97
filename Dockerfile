@@ -25,7 +25,7 @@ ENV PYTHONPATH pistachio/
 
 
 ENTRYPOINT ["python", "-u", "pistachio/src/models/lightning_train.py"]
-CMD ["/gs/mlops97_data_storage/data/data/raw"]
+CMD ["gs://mlops97_data_storage/data/data/raw"]
 
 
 
