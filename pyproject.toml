@@ -14,3 +14,7 @@ license = {file = "LICENSE"}
 
 [tool.setuptools.dynamic]
 dependencies = {file = ["requirements.txt"]}
+
+[tool.ruff]
+select = ["I", "C", "E", "W"]
+line-length=120

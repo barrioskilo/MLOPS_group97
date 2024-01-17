@@ -1,34 +1,27 @@
 # main.py
 import click
+import hydra
 import torch
+from omegaconf import DictConfig, OmegaConf
 from torch import nn, optim
 from torch.utils.data import DataLoader
-from pistachio.models.model import MyAwesomeModel
-
-import hydra
-from omegaconf import DictConfig, OmegaConf
 
 import wandb
+from pistachio.models.model import MyAwesomeModel
 
-args = {
-    "log_interval": 50,
-    "architecture": "CNN",
-    "dataset": "pistachio"
-}
+args = {"log_interval": 50, "architecture": "CNN", "dataset": "pistachio"}
 
-wandb.init(
-    project="pistachio",
-    config=args
-    )
+wandb.init(project="pistachio", config=args)
 
 
 # Function to prepare data
 # Function to prepare shuffled data
 
+
 def prepare_data(random_seed, portion):
-    processed_data = torch.load('data/processed/processed_data.pt')
-    data = processed_data['data']
-    labels = processed_data['labels']
+    processed_data = torch.load("data/processed/processed_data.pt")
+    data = processed_data["data"]
+    labels = processed_data["labels"]
 
     # Shuffle data
     indices = list(range(len(data)))
@@ -48,6 +41,7 @@ def prepare_data(random_seed, portion):
 
     return train_loader, test_loader
 
+
 '''
 @click.group()
 def cli():
@@ -59,8 +53,9 @@ def cli():
 @click.option("--epochs", default=10, help="number of training epochs")
 '''
 
+
 @hydra.main(version_base=None, config_path="conf", config_name="config")
-def train(cfg : DictConfig):
+def train(cfg: DictConfig):
     """Train a model on MNIST."""
     print("Training day and night")
     print(OmegaConf.to_yaml(cfg))
@@ -68,8 +63,8 @@ def train(cfg : DictConfig):
     epochs = cfg.hyperparameters.epochs
     random_seed = cfg.data.random_seed
     portion = cfg.data.portion
-    #print(f"Learning rate: {lr}")
-    #print(f"Number of epochs: {epochs}")
+    # print(f"Learning rate: {lr}")
+    # print(f"Number of epochs: {epochs}")
 
     # Load the data
     train_loader, _ = prepare_data(random_seed, portion)
@@ -99,7 +94,8 @@ def train(cfg : DictConfig):
         print(f"Epoch {epoch+1}/{epochs}, Loss: {total_loss/len(train_loader)}")
 
     # Save the trained model
-    torch.save(model.state_dict(), 'pistachio/models/pistachio_model.pth')
+    torch.save(model.state_dict(), "pistachio/models/pistachio_model.pth")
+
 
 @click.command()
 @click.argument("model_checkpoint")
@@ -129,12 +125,11 @@ def evaluate(model_checkpoint):
     accuracy = correct / total
     print(f"Test Accuracy: {accuracy*100:.2f}%")
 
-'''
+
+"""
 cli.add_command(train)
 cli.add_command(evaluate)
-'''
+"""
 
 if __name__ == "__main__":
     train()
-
-
