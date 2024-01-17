@@ -46,7 +46,7 @@ visualize: requirements
 	$(PYTHON_INTERPRETER) pistachio/src/visualization/visualize.py pistachio/models/pistachio_model.pth data/processed/processed_data.pt
 
 tests: requirements
-	pytest -s tests/
+	pytest -p no:warnings tests/
 	
 coverage: requirements
 	coverage report -m --omit="tests/*,test_environment.py,**/model.py,pistachio/src/data/*,pistachio/src/visualization/*,pistachio/app.py,pistachio/src/models/predict_model.py,pistachio/src/models/train_model.py"

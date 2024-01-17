@@ -1,6 +1,5 @@
 # model.py
 from torch import nn
-from torch import Tensor
 
 class MyAwesomeModel(nn.Module):
     """My awesome model."""

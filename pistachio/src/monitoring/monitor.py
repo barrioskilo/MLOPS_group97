@@ -1,71 +1,103 @@
 import os
-import numpy as np
-import matplotlib.pyplot as plt
-from sklearn.manifold import TSNE
+from PIL import Image
+from torchvision import transforms
+import torch
+from pistachio.src.models.lightning_train import TransferLearningModel
 import torch
 import torch.nn as nn
-from torchvision import models, transforms
-from torch.autograd import Variable
-from pistachio.models.model import MyAwesomeModel  # Import your model class here
+import torch.nn.functional as F
+import pytorch_lightning as pl
+from pytorch_lightning.callbacks import Callback
+import wandb
+from pistachio.src.data.make_lightning_dataset import PistachioDataModule
+import click
+from torchmetrics import Accuracy
+from pytorch_lightning.loggers import WandbLogger
+from torchvision import models
+from torch.optim.lr_scheduler import MultiStepLR
+import numpy as np
+from evidently.test_suite import TestSuite
+from evidently.tests import *
+import pandas as pd
 
-# Function to load preprocessed data
-def load_processed_data(data_path):
-    processed_data = torch.load(data_path)
-    return processed_data['data'], processed_data['labels']
+# Load the model
+def load_model(model_path):
+    model = TransferLearningModel()  # Instantiate your model class
+    model.load_state_dict(torch.load(model_path))
+    return model
 
-# Function to extract intermediate representations using a pre-trained model
-def extract_intermediate_representations(model, images):
-    model.eval()
-    intermediate_features = model(images)
-    return intermediate_features.detach().numpy()
+input_filepath = 'data/raw/'
+dm = PistachioDataModule(input_filepath, batch_size=32)
+dm.setup()
 
-# Function to visualize features using t-SNE
-def visualize_features(features, labels):
-    tsne = TSNE(n_components=2, random_state=42)
-    reduced_features = tsne.fit_transform(features)
+# Provide the path to your trained model
+model_path = 'pistachio/models/transfer_learning_model.pth'
+model = load_model(model_path)
 
-    # Create a scatter plot with subplots for data distribution, intermediate features, and original features
-    plt.figure(figsize=(18, 5))
+test_labels = np.array([])
+test_preds = np.array([])
+test_preds_corrupted = np.array([])
+#test_labels = []
+#test_preds = []
+#test_preds_corrupted = []
 
-    # Subplot for t-SNE visualization
-    plt.subplot(1, 3, 1)
-    plt.scatter(reduced_features[:, 0], reduced_features[:, 1], c=labels, cmap='viridis')
-    plt.title('t-SNE Visualization of Intermediate Features')
-    plt.colorbar()
 
-    # Subplot for data distribution
-    plt.subplot(1, 3, 2)
-    plt.hist(labels, bins=len(np.unique(labels)), color='skyblue', edgecolor='black')
-    plt.title('Data Distribution')
-    plt.xlabel('Class Label')
-    plt.ylabel('Count')
+with (torch.no_grad()):
+    for batch in dm.test_dataloader():
+        dataiter = iter(dm.test_dataloader())
+        x, y = next(dataiter)
+        #model.eval()
+        device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+        y_pred = model(x.to(device)).squeeze()
+        y_pred = torch.round(torch.sigmoid(y_pred)).int().numpy()
+        #y_pred = torch.round(torch.sigmoid(y_pred)).int()
+        x_corrupted = transforms.functional.rotate(x, 90)
+        y_pred_corrupted = model(x_corrupted.to(device)).squeeze()
+        y_pred_corrupted = torch.round(torch.sigmoid(y_pred_corrupted)).int().numpy()
+        #y_pred_corrupted = torch.round(torch.sigmoid(y_pred_corrupted)).int()
+        test_labels = np.append(test_labels, y.numpy())
+        test_preds = np.append(test_preds, y_pred)
+        test_preds_corrupted = np.append(test_preds_corrupted, y_pred_corrupted)
 
-    # Subplot for histogram of intermediate features
-    plt.subplot(1, 3, 3)
-    plt.hist(features.flatten(), bins=50, color='orange', edgecolor='black')
-    plt.title('Histogram of Intermediate Features')
-    plt.xlabel('Feature Value')
-    plt.ylabel('Count')
 
-    # Adjust layout to prevent overlap
-    plt.tight_layout()
+#test_labels = torch.cat(test_labels, dim=0)
+#test_preds = torch.cat(test_preds, dim=0)
+#test_labels = torch.cat(test_labels, dim=0)
 
-    # Save the visualization
-    plt.savefig('reports/figures/visualization.png')
-    plt.show()
+print('Original data Accuracy: ', (test_preds == test_labels).mean())
+print('Corrupted data Accuracy: ', (test_preds_corrupted == test_labels).mean())
 
-# Set the path to your pre-trained PyTorch model
-model_path = 'pistachio/models/pistachio_model.pth'
-model = MyAwesomeModel()  # Instantiate your model
-model.load_state_dict(torch.load(model_path))
-model.eval()
 
-# Set the path to your preprocessed data
-processed_data_path = 'data/processed/processed_data.pt'
-images, labels = load_processed_data(processed_data_path)
+#dataset-level tests
+prob_classification_performance_dataset_tests = TestSuite(tests=[
+    TestAccuracyScore(),
+    TestPrecisionScore(),
+    TestRecallScore(),
+    TestF1Score(),
+    #TestRocAuc(),
+    TestLogLoss(),
+    TestPrecisionByClass(label=0),
+    TestPrecisionByClass(label=1),
+    TestRecallByClass(label=0),
+    TestRecallByClass(label=1),
+    TestF1ByClass(label=0),
+    TestF1ByClass(label=1),
 
-# Extract intermediate representations
-intermediate_features = extract_intermediate_representations(model, images)
+])
 
-# Visualize features using t-SNE and save the plot
-visualize_features(intermediate_features, labels)
+# Building Ref data
+#target = pd.DataFrame(data={'target': test_labels.numpy()})
+#prediction = pd.DataFrame(data={'prediction': test_preds.numpy()})
+target = pd.DataFrame(data={'target': test_labels})
+prediction = pd.DataFrame(data={'prediction': test_preds})
+ref = pd.concat([target,prediction], axis=1)
+
+# Building Cur data
+#prediction_corrupted = pd.DataFrame(data={'prediction': test_preds_corrupted.numpy()})
+prediction_corrupted = pd.DataFrame(data={'prediction': test_preds_corrupted})
+cur = pd.concat([target,prediction_corrupted], axis=1)
+
+
+prob_classification_performance_dataset_tests.run(reference_data=ref, current_data=cur)
+#prob_classification_performance_dataset_tests.as_dict()
+prob_classification_performance_dataset_tests.save_html('monitoring.html')

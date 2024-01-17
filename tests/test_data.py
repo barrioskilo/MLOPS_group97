@@ -4,6 +4,7 @@ import pytest
 from tests import _PATH_DATA
 
 
+
 # Assuming __init__.py is in the same directory as this script
 init_file_path = os.path.join(os.path.dirname(__file__), '__init__.py')
 exec(open(init_file_path).read())  # Execute __init__.py to get the variables
