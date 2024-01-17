@@ -3,6 +3,7 @@ from torch.utils.data import DataLoader
 import pytest
 from pistachio.src.models.lightning_train import TransferLearningModel, PistachioDataModule
 
+
 # Mock for the PyTorch Lightning Trainer to avoid actual training
 @pytest.fixture
 

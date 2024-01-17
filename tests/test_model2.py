@@ -2,6 +2,7 @@
 import torch
 from pistachio.src.models.lightning_train import TransferLearningModel
 
+
 def test_model_architecture():
     # Instantiate your model
     model = TransferLearningModel()
