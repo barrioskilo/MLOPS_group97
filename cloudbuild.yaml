@@ -19,7 +19,7 @@ steps:
       - 'deploy'
       - 'pistachioapp'
       - '--image'
-      - 'gcr.io/mlops97/docker_inference_image:inference'
+      - 'gcr.io/mlops97/docker_inference_image:latest'
       - '--region'
       - 'europe-west1'
-      
+
