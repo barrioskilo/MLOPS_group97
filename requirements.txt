@@ -25,6 +25,7 @@ pytorch_lightning
 ruff
 evidently
 fastapi
+uvicorn
 
 
 
