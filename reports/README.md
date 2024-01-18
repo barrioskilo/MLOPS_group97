@@ -200,13 +200,9 @@ We didn't use branches and pull requests in our workflow. However, if we had, it
 > **Did you use DVC for managing data in your project? If yes, then how did it improve your project to have version**
 > **control of your data. If no, explain a case where it would be beneficial to have version control of your data.**
 >
-> Answer length: 100-200 words.
->
-> Example:
-> *We did make use of DVC in the following way: ... . In the end it helped us in ... for controlling ... part of our*
-> *pipeline*
->
 > Answer:
+
+We integrated Data Version Control (DVC) into our project through a two-stage approach: Initially, we established a connection between our data and a Google Drive repository,  this setup served as our preliminary versioning system. Subsequently, we transitioned to linking our data with Google Cloud Storage,  this shift enabled us to leverage the cloud's capabilities for maintaining multiple versions of our data, ensuring more robust and scalable data management.
 
 --- question 10 fill here ---
 
@@ -309,29 +305,19 @@ Our continuous integration (CI) setup relies on GitHub Actions, featuring a "Run
 
 > **List all the GCP services that you made use of in your project and shortly explain what each service does?**
 >
-> Answer length: 50-200 words.
->
-> Example:
-> *We used the following two services: Engine and Bucket. Engine is used for... and Bucket is used for...*
->
 > Answer:
 
---- question 17 fill here ---
+In our project, we've effectively utilized a range of Google Cloud Platform services. We've stored all project data in Google Cloud Storage, integrating it with the Data Version Control (DVC) system for efficient data management. For continuous integration, Cloud Build has been set up to trigger automatically with each GitHub commit, streamlining our development process. Our Docker images, generated from Dockerfiles, are managed and stored securely using Container Registry. Additionally, we use Vertex AI for training our machine learning models, taking advantage of cloud-based GPUs for enhanced performance and efficiency.
+
 
 ### Question 18
 
 > **The backbone of GCP is the Compute engine. Explained how you made use of this service and what type of VMs**
 > **you used?**
 >
-> Answer length: 100-200 words.
->
-> Example:
-> *We used the compute engine to run our ... . We used instances with the following hardware: ... and we started the*
-> *using a custom container: ...*
->
 > Answer:
 
---- question 18 fill here ---
+We opted not to utilize Google Compute Engine in our project, choosing instead to harness the capabilities of Vertex AI for model training. Vertex AI provided a more streamlined and integrated environment for our specific needs, tis decision was driven by Vertex AI's ability to efficiently manage the training process, leveraging advanced machine learning tools and GPU resources. While Google Compute Engine is indeed a powerful tool for creating and managing virtual machines remotely, which can be highly beneficial for various computing tasks including model training, our project requirements aligned more closely with the specialized features of Vertex AI. 
 
 ### Question 19
 
@@ -340,7 +326,7 @@ Our continuous integration (CI) setup relies on GitHub Actions, featuring a "Run
 >
 > Answer:
 
---- question 19 fill here ---
+[Data Storage Figure](figures/data%20Storage.png)
 
 ### Question 20
 
@@ -349,7 +335,7 @@ Our continuous integration (CI) setup relies on GitHub Actions, featuring a "Run
 >
 > Answer:
 
---- question 20 fill here ---
+![GCP container registry](figures/container%20registry.png)
 
 ### Question 21
 
@@ -358,7 +344,7 @@ Our continuous integration (CI) setup relies on GitHub Actions, featuring a "Run
 >
 > Answer:
 
---- question 21 fill here ---
+![GCP build history](figures/cloud%20build.png)
 
 ### Question 22
 
@@ -373,8 +359,6 @@ Our continuous integration (CI) setup relies on GitHub Actions, featuring a "Run
 > *`curl -X POST -F "file=@file.json"<weburl>`*
 >
 > Answer:
-
---- question 22 fill here ---
 
 ### Question 23
 
