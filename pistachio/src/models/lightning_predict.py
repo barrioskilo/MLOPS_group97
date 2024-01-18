@@ -14,18 +14,12 @@ img_test_transforms = transforms.Compose(
     ]
 )
 
-# Provide the path to your trained model
-model_path = "pistachio/models/transfer_learning_model.pth"
-
 
 # Load the model
 def load_model(model_path):
     model = TransferLearningModel()  # Instantiate your model class
     model.load_state_dict(torch.load(model_path))
     return model
-
-
-
 
 
 def find_classes(dir):
@@ -56,7 +50,7 @@ def make_prediction(filename, model_path):
 
 # Provide the correct path to your example image
 example_Kirmizi_path = 'data/raw/Kirmizi_Pistachio/kirmizi 110.jpg'  # Adjust the path accordingly
-make_prediction(model, example_Kirmizi_path)
+make_prediction('transfer_learning_model.pth', example_Kirmizi_path)
 
 example_Siirt_path = 'data/raw/Siirt_Pistachio/siirt 110.jpg'  # Adjust the path accordingly
-make_prediction(model, example_Siirt_path)
+make_prediction('transfer_learning_model.pth', example_Siirt_path)
