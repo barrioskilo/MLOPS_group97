@@ -11,7 +11,6 @@ COPY setup.py setup.py
 COPY pistachio/ pistachio/
 COPY app/ app/
 
-WORKDIR /app
 
 # Downloading gcloud package
 RUN curl https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.tar.gz > /tmp/google-cloud-sdk.tar.gz
@@ -24,8 +23,6 @@ RUN mkdir -p /usr/local/gcloud \
 # Adding the package path to local
 ENV PATH $PATH:/usr/local/gcloud/google-cloud-sdk/bin
 
-RUN gsutil -m cp -r gs://mlops97_data_storage/model/pistachio_model.pth app/models/
-
 
 WORKDIR /
 RUN pip install -r requirements.txt --no-cache-dir
@@ -37,4 +34,4 @@ ENV PORT=8080
 
 EXPOSE 8080
 # Command to run the application
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
+CMD ["gsutil", "-m", "cp", "-r", "gs://mlops97_data_storage/model/pistachio_model.pth", "app/models/", "&&", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
