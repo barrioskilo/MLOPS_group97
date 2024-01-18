@@ -1,0 +1,32 @@
+# local package
+#-e .
+
+# external requirements
+torch
+numpy
+torchvision
+python-dotenv
+click
+Sphinx
+coverage
+#awscli
+flake8
+python-dotenv>=0.5.1
+matplotlib
+scikit-learn
+pytest
+hydra-core 
+wandb
+coverage
+python-multipart
+pydantic
+torchmetrics
+pytorch_lightning
+ruff
+evidently
+PIL 
+fastapi
+os
+
+# backwards compatibility
+pathlib2
