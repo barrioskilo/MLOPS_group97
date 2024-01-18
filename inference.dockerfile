@@ -34,4 +34,4 @@ ENV PORT=8080
 
 EXPOSE 8080
 # Command to run the application
-CMD ["gsutil", "-m", "cp", "-r", "gs://mlops97_data_storage/model/pistachio_model.pth", "app/models/", "&&", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
+CMD ["gsutil", "-m", "cp", "-r", "gs://mlops97_data_storage/model/pistachio_model.pth", "app/models/", "&&", "uvicorn", "pistachio_inference:app", "--host", "0.0.0.0", "--port", "8080", "--workers", "1"]
