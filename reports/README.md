@@ -68,7 +68,7 @@ end of the project.
       you can optimize your code
 * [ok] Use Weights & Biases to log training progress and other important metrics/artifacts in your code. Additionally,
       consider running a hyperparameter optimization sweep.
-* [ ] Use Pytorch-lightning (if applicable) to reduce the amount of boilerplate in your code
+* [ok] Use Pytorch-lightning (if applicable) to reduce the amount of boilerplate in your code
 
 ### Week 2
 
@@ -77,8 +77,8 @@ end of the project.
 * [ok] Calculate the coverage.
 * [ok] Get some continuous integration running on the github repository
 * [ok] Create a data storage in GCP Bucket for you data and preferable link this with your data version control setup
-* [ ] Create a trigger workflow for automatically building your docker images
-* [ ] Get your model training in GCP using either the Engine or Vertex AI
+* [ok] Create a trigger workflow for automatically building your docker images
+* [ok] Get your model training in GCP using either the Engine or Vertex AI
 * [ok] Create a FastAPI application that can do inference using your model
 * [ ] If applicable, consider deploying the model locally using torchserve
 * [ ] Deploy your model in GCP using either Functions or Run as the backend
@@ -86,8 +86,8 @@ end of the project.
 ### Week 3
 
 * [ ] Check how robust your model is towards data drifting
-* [ ] Setup monitoring for the system telemetry of your deployed model
-* [ ] Setup monitoring for the performance of your deployed model
+* [ok] Setup monitoring for the system telemetry of your deployed model
+* [ok] Setup monitoring for the performance of your deployed model
 * [ ] If applicable, play around with distributed data loading
 * [ ] If applicable, play around with distributed model training
 * [ ] Play around with quantization, compilation and pruning for you trained models to increase inference speed
@@ -190,7 +190,7 @@ We have implemented a total number of 6 tests. We have followed the intructions 
 >
 > Answer:
 
---- question 8 fill here ---
+The total code coverage of code is 38%. The coverage report shows that the other listed files, including `__init__.py` files and `build_features.py`, have 100% coverage. This means that all lines in these files are covered by tests. High coverage percentages in these files are a positive sign, suggesting that tests effectively validate the functionality implemented in these modules. The focus may need to be on increasing coverage in `lightning_train.py`, where a lower percentage suggests areas that are not thoroughly tested.
 
 ### Question 9
 

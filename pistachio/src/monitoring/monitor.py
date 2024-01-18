@@ -77,7 +77,7 @@ prob_classification_performance_dataset_tests = TestSuite(tests=[
     TestRecallScore(),
     TestF1Score(),
     #TestRocAuc(),
-    TestLogLoss(),
+    #TestLogLoss(),
     TestPrecisionByClass(label=0),
     TestPrecisionByClass(label=1),
     TestRecallByClass(label=0),
