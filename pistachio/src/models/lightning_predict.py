@@ -54,13 +54,8 @@ def make_prediction(model, filename):
 
 
 # Provide the correct path to your example image
-<<<<<<< HEAD
 example_Kirmizi_path = 'data/raw/Kirmizi_Pistachio/kirmizi 110.jpg'  # Adjust the path accordingly
 make_prediction(model, example_Kirmizi_path)
 
 example_Siirt_path = 'data/raw/Siirt_Pistachio/siirt 110.jpg'  # Adjust the path accordingly
 make_prediction(model, example_Siirt_path)
-=======
-example_image_path = "data/raw/Siirt_Pistachio/siirt 100.jpg"  # Adjust the path accordingly
-make_prediction(model, example_image_path)
->>>>>>> cebc652f9d5327f7df8ede42648cd8fa7029f718

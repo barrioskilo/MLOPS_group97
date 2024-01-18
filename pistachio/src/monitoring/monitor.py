@@ -19,6 +19,8 @@ import numpy as np
 from evidently.test_suite import TestSuite
 from evidently.tests import *
 import pandas as pd
+import json
+
 
 # Load the model
 def load_model(model_path):
@@ -99,5 +101,16 @@ cur = pd.concat([target,prediction_corrupted], axis=1)
 
 
 prob_classification_performance_dataset_tests.run(reference_data=ref, current_data=cur)
-#prob_classification_performance_dataset_tests.as_dict()
-prob_classification_performance_dataset_tests.save_html('monitoring.html')
+result_dict = prob_classification_performance_dataset_tests.as_dict()
+prob_classification_performance_dataset_tests.save_html('reports/monitoring.html')
+
+# Specify the path to the JSON file
+json_file_path = 'reports/result_dict.json'
+
+# Save the dictionary to a JSON file
+with open(json_file_path, 'w') as json_file:
+    json.dump(result_dict, json_file)
+
+# Optionally, you can print a message indicating the successful save
+print(f"Result dictionary saved to {json_file_path}")
+

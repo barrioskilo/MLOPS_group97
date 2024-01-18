@@ -23,6 +23,7 @@ pydantic
 torchmetrics
 pytorch_lightning
 ruff
+evidently
 
 
 # backwards compatibility

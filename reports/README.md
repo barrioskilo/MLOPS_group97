@@ -173,15 +173,9 @@ Yes, we implemented rules for code quality and format using Ruff. These rules in
 
 > **How many tests did you implement and what are they testing in your code?**
 >
-> Answer length: 50-100 words.
->
-> Example:
-> *In total we have implemented X tests. Primarily we are testing ... and ... as these the most critical parts of our*
-> *application but also ... .*
->
 > Answer:
 
---- question 7 fill here ---
+We have implemented a total number of 6 tests. We have followed the intructions given by the instructors and created unit tests related to the data part of our code and the model. The tests related to the data check important properties, providing assertions for key aspects such as the presence of data and labels, the correct shape of images, and the validity of labels. It uses the pytest framework for test organization and execution. Regarding to the model tests, both of them are brief and focus on fundamental aspects, such as output shape and model architecture. Finally, training tests evaluate the TransferLearningModel for proper instantiation, forward pass functionality, and optimizer/scheduler configuration. It ensures correct construction, output shape during a forward pass, and the expected optimizer/scheduler classes.
 
 ### Question 8
 
