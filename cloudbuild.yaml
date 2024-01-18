@@ -1,9 +1,9 @@
 steps:
-  #- name: 'gcr.io/cloud-builders/docker'
-  #  args: ['build', '-f', 'training.dockerfile', '-t', 'gcr.io/mlops97/docker_training_image', '.']
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-f', 'training.dockerfile', '-t', 'gcr.io/mlops97/docker_training_image', '.']
 
-  #- name: 'gcr.io/cloud-builders/docker'
-  #  args: ['build', '-f', 'inference.dockerfile', '-t', 'gcr.io/mlops97/docker_inference_image', '.']
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-f', 'inference.dockerfile', '-t', 'gcr.io/mlops97/docker_inference_image', '.']
 
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/mlops97/docker_training_image:latest']
