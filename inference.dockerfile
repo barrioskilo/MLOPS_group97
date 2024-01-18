@@ -28,7 +28,7 @@ WORKDIR /
 RUN pip install -r requirements.txt --no-cache-dir
 RUN pip install . --no-deps --no-cache-dir
 
-ENV PYTHONPATH pistachio/
+#ENV PYTHONPATH pistachio/
 # Define environment variable
 ENV PORT=8080
 
