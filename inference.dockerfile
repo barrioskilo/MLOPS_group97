@@ -34,4 +34,4 @@ ENV PORT=8080
 
 EXPOSE 8080
 # Command to run the application
-CMD ["/bin/sh", "-c" , "gsutil -m cp -r gs://mlops97_data_storage/model/pistachio_model.pth app/models/ && uvicorn pistachio_inference:app --host 0.0.0.0 --port 8080 --workers 1"]
+CMD ["/bin/sh", "-c" , "gsutil -m cp -r gs://mlops97_data_storage/model/transfer_learning_model.pth app/models/ && uvicorn pistachio_inference:app --host 0.0.0.0 --port 8080 --workers 1"]
