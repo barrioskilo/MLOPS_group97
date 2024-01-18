@@ -1,15 +1,15 @@
 steps:
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-f', 'training.dockerfile', '-t', 'gcr.io/mlops97/docker_training_image', '.']
-
   #- name: 'gcr.io/cloud-builders/docker'
-  #  args: ['build', '-f', 'inference.dockerfile', '-t', 'gcr.io/mlops97/docker_inference_image', '.']
+  #  args: ['build', '-f', 'training.dockerfile', '-t', 'gcr.io/mlops97/docker_training_image', '.']
 
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/mlops97/docker_training_image:latest']
+    args: ['build', '-f', 'inference.dockerfile', '-t', 'gcr.io/mlops97/docker_inference_image', '.']
 
   #- name: 'gcr.io/cloud-builders/docker'
-  #  args: ['push', 'gcr.io/mlops97/docker_inference_image:latest']
+  #  args: ['push', 'gcr.io/mlops97/docker_training_image:latest']
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/mlops97/docker_inference_image:latest']
 
    #Deploy inference container image to Cloud Run
   #- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
