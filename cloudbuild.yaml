@@ -22,3 +22,4 @@ steps:
       - 'gcr.io/mlops97/docker_inference_image:inference'
       - '--region'
       - 'europe-west1'
+      
