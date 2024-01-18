@@ -119,7 +119,7 @@ s231938, s231919, s231813, s180768
 >
 > Answer:
 
-The framework that our team has selected for the implementation of the project has been Torchvision. The decision of using this framework was driven by its integration with PyTorch and the wide availability of pre-trained models. Our project is focussing on the binary classification of pistachio images, where we have two classes (Kirmizi and Siirt). Those different models provided by the framework were very suitable for our transfer learning process. We opted for the ResNet18 pre-trained model for the completion of this project as its architecture is widely known, its performance in extracting features is really solid and because of its success in many image classification tasks.
+The framework that our team has selected for the implementation of the project has been Torchvision. The decision of using this framework was driven by its integration with PyTorch and the wide availability of pre-trained models. Our project is focussing on the binary classification of pistachio images, where we have two classes (Kirmizi and Siirt). Those different models provided by the framework were very suitable for our transfer learning process. We opted for the ResNet50 pre-trained model for the completion of this project as its architecture is widely known, its performance in extracting features is really solid and because of its success in many image classification tasks.
 
 ## Coding environment
 
