@@ -182,30 +182,18 @@ We have implemented a total number of 6 tests. We have followed the intructions 
 > **What is the total code coverage (in percentage) of your code? If you code had an code coverage of 100% (or close**
 > **to), would you still trust it to be error free? Explain you reasoning.**
 >
-> Answer length: 100-200 words.
->
-> Example:
-> *The total code coverage of code is X%, which includes all our source code. We are far from 100% coverage of our **
-> *code and even if we were then...*
->
 > Answer:
 
-The total code coverage of code is 38%. The coverage report shows that the other listed files, including `__init__.py` files and `build_features.py`, have 100% coverage. This means that all lines in these files are covered by tests. High coverage percentages in these files are a positive sign, suggesting that tests effectively validate the functionality implemented in these modules. The focus may need to be on increasing coverage in `lightning_train.py`, where a lower percentage suggests areas that are not thoroughly tested.
+The total code coverage of code is 38%. The coverage report shows that the listed files, including `__init__.py` files and `build_features.py`, have 100% coverage. This means that all lines in these files are covered by tests. High coverage percentages in these files are a positive sign, suggesting that tests effectively validate the functionality implemented in these modules. The focus may need to be on increasing coverage in `lightning_train.py`, where a lower percentage suggests areas that are not thoroughly tested. Even if your code has a very high coverage, it doesn't ensure that there are no errors. While good testing can catch many issues, it might miss some complex situations or unique cases. Also, the quality of tests matters; they should be well-crafted to truly check if the code is correct. So, high coverage is good, but it's best when combined with other testing methods like unit tests, integration tests, and manual testing to make sure your software is strong and dependable.
 
 ### Question 9
 
 > **Did you workflow include using branches and pull requests? If yes, explain how. If not, explain how branches and**
 > **pull request can help improve version control.**
 >
-> Answer length: 100-200 words.
->
-> Example:
-> *We made use of both branches and PRs in our project. In our group, each member had an branch that they worked on in*
-> *addition to the main branch. To merge code we ...*
->
 > Answer:
 
---- question 9 fill here ---
+We didn't use branches and pull requests in our workflow. However, if we had, it would have helped by allowing us to work on different parts of the code separately. Branches act like different workspaces for features or fixes. Pull requests then let us propose changes and get them reviewed before adding them to the main code. This helps catch mistakes early, keeps the main code clean, and allows multiple team members to work on things simultaneously without conflicts. Not using branches and pull requests might mean missing out on these benefits, making collaboration less organized and potentially causing issues in the code.
 
 ### Question 10
 
@@ -228,15 +216,9 @@ The total code coverage of code is 38%. The coverage report shows that the other
 > **multiple operating systems, python version etc. Do you make use of caching? Feel free to insert a link to one of**
 > **your github actions workflow.**
 >
-> Answer length: 200-300 words.
->
-> Example:
-> *We have organized our CI into 3 separate files: one for doing ..., one for running ... testing and one for running*
-> *... . In particular for our ..., we used ... .An example of a triggered workflow can be seen here: <weblink>*
->
 > Answer:
 
---- question 11 fill here ---
+Our continuous integration (CI) setup relies on GitHub Actions, featuring a "Run tests" workflow triggered by pushes and pull requests to the `master` and `main` branches. This workflow, executed on the latest Ubuntu version, follows a sequence of essential steps. It starts by fetching the latest code, proceeds to set up the Python 3.8 environment using the `setup-python` action, and installs project dependencies from `requirements.txt` and `requirements_tests.txt`. The workflow then runs the test suite with pytest, ensuring unit tests are executed successfully. To optimize workflow efficiency, dependencies are cached using the `actions/cache` action, reducing redundant installations. While the current configuration targets Ubuntu, future improvements could involve testing on additional operating systems and Python versions by extending the workflow. You can find the GitHub Actions workflow [here](https://github.com/eduardpuga/MLOPS_group97/actions/workflows/tests.yml).
 
 ## Running code and tracking experiments
 
