@@ -389,7 +389,19 @@ Our continuous integration (CI) setup relies on GitHub Actions, featuring a "Run
 >
 > Answer:
 
---- question 23 fill here ---
+We created a monitoring file (monitoring.py) using the evidently library.
+To run our monitoring experiment we generated some "corrupted" images by rotating our original images (90 degrees).
+Images are not structured tabular data, so we couldn't monitor the changes in the features when new data is added.
+For this reason we decided to monitor the performance of our model when new images are used. 
+The prediction matrices that we decided to include are:
+Accuracy
+Prediction
+Recall
+F1
+
+Our Monitoring code generates both: 
+1) an .html report for an easy inspection of the monitoring results
+2) a dictionary/json file that can be embedded in an automated routine to produce warning about the quality of the new data used in the model
 
 ### Question 24
 
