@@ -24,6 +24,8 @@ torchmetrics
 pytorch_lightning
 ruff
 evidently
+fastapi
+os
 
 
 # backwards compatibility
