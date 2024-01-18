@@ -5,7 +5,7 @@ import os
 
 
 # Replace 'your_model_folder' with the actual path to your model folder
-model_file = "app/models/pistachio_model.pth"
+model_file = "app/models/transfer_learning_model.pth"
 
 # Create FastAPI app
 app = FastAPI()
