@@ -381,12 +381,6 @@ Our continuous integration (CI) setup relies on GitHub Actions, featuring a "Run
 > **Did you manage to implement monitoring of your deployed model? If yes, explain how it works. If not, explain how**
 > **monitoring would help the longevity of your application.**
 >
-> Answer length: 100-200 words.
->
-> Example:
-> *We did not manage to implement monitoring. We would like to have monitoring implemented such that over time we could*
-> *measure ... and ... that would inform us about this ... behaviour of our application.*
->
 > Answer:
 
 We created a monitoring file (monitoring.py) using the evidently library.
