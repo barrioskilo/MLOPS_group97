@@ -139,7 +139,7 @@ def train(input_filepath):
     wandb_logger = WandbLogger(project='wandb-lightning', job_type='train')
 
     model = TransferLearningModel()
-    trainer = pl.Trainer(max_epochs=3, logger=wandb_logger)
+    trainer = pl.Trainer(max_epochs=1, logger=wandb_logger)
     trainer.fit(model=model, datamodule=dm)
 
     model_path = "pistachio/models/transfer_learning_model.pth"

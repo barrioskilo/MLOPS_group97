@@ -35,7 +35,7 @@ RUN gsutil -m cp -r gs://mlops97_data_storage/data/ .
 # Pull data from DVC remote
 # RUN dvc pull
 
-ENTRYPOINT ["/bin/sh", "-c" , "python -u pistachio/src/models/lightning_train.py /data/data/raw && gsutil -m cp -r pistachio/models/pistachio_model.pth gs://mlops97_data_storage/model"]
+ENTRYPOINT ["/bin/sh", "-c" , "python -u pistachio/src/models/lightning_train.py /data/data/raw && gsutil -m cp -r pistachio/models/transfer_learning_model.pth gs://mlops97_data_storage/model"]
 
 
 
