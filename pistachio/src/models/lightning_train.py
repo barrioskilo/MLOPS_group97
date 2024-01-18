@@ -38,6 +38,7 @@ class ImagePredictionLogger(Callback):
                 ]
             }
         )
+        
 '''
 
 
