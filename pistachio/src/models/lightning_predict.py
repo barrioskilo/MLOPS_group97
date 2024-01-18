@@ -25,7 +25,7 @@ def load_model(model_path):
     return model
 
 
-model = load_model(model_path)
+
 
 
 def find_classes(dir):
@@ -35,7 +35,8 @@ def find_classes(dir):
     return classes, class_to_idx
 
 
-def make_prediction(model, filename):
+def make_prediction(filename, model_path):
+    model = load_model(model_path)
     classes, class_to_idx = find_classes("data/raw/")
     print("Available classes:", classes)
 

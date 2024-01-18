@@ -1,6 +1,6 @@
 # Import libraries
 from fastapi import FastAPI, File, UploadFile, HTTPException
-from pistachio.src.models.predict_model import *
+from pistachio.src.models.lightning_predict import *
 import os
 
 
@@ -27,7 +27,7 @@ async def classify_image(file: UploadFile = File(...)):
         with open(image_path, "wb") as image_file:
             image_file.write(await file.read())
 
-        predicted_class = predict(image_path, model_file)
+        predicted_class = make_prediction(image_path, model_file)
 
         # Return the predicted class as JSON
         return {"predicted_class": predicted_class}
