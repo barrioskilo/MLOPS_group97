@@ -1,18 +1,24 @@
 steps:
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-f', 'training.dockerfile', '-t', 'gcr.io/mlops97/docker_image', '.']
+    args: ['build', '-f', 'training.dockerfile', '-t', 'gcr.io/mlops97/docker_training_image:latest', '.']
+
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/mlops97/docker_image']
-  # Deploy container image to Cloud Run
+    args: ['build', '-f', 'inference.dockerfile', '-t', 'gcr.io/mlops97/docker_inference_image:latest', '.']
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/mlops97/docker_training_image:training']
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/mlops97/docker_inference_image:inference']
+
+  # Deploy inference container image to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
     args:
-    - 'run'
-    - 'deploy'
-    - 'service'
-    - '--image'
-    - 'gcr.io/mlops97/docker_image:latest'
-    - '--region'
-    - 'europe-west1'
-
-
+      - 'run'
+      - 'deploy'
+      - 'pistachio_app'
+      - '--image'
+      - 'gcr.io/mlops97/docker_inference_image:inference'
+      - '--region'
+      - 'europe-west1'
