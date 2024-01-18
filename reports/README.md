@@ -68,7 +68,7 @@ end of the project.
       you can optimize your code
 * [ok] Use Weights & Biases to log training progress and other important metrics/artifacts in your code. Additionally,
       consider running a hyperparameter optimization sweep.
-* [ ] Use Pytorch-lightning (if applicable) to reduce the amount of boilerplate in your code
+* [ok] Use Pytorch-lightning (if applicable) to reduce the amount of boilerplate in your code
 
 ### Week 2
 
@@ -77,8 +77,8 @@ end of the project.
 * [ok] Calculate the coverage.
 * [ok] Get some continuous integration running on the github repository
 * [ok] Create a data storage in GCP Bucket for you data and preferable link this with your data version control setup
-* [ ] Create a trigger workflow for automatically building your docker images
-* [ ] Get your model training in GCP using either the Engine or Vertex AI
+* [ok] Create a trigger workflow for automatically building your docker images
+* [ok] Get your model training in GCP using either the Engine or Vertex AI
 * [ok] Create a FastAPI application that can do inference using your model
 * [ ] If applicable, consider deploying the model locally using torchserve
 * [ ] Deploy your model in GCP using either Functions or Run as the backend
@@ -86,8 +86,8 @@ end of the project.
 ### Week 3
 
 * [ ] Check how robust your model is towards data drifting
-* [ ] Setup monitoring for the system telemetry of your deployed model
-* [ ] Setup monitoring for the performance of your deployed model
+* [ok] Setup monitoring for the system telemetry of your deployed model
+* [ok] Setup monitoring for the performance of your deployed model
 * [ ] If applicable, play around with distributed data loading
 * [ ] If applicable, play around with distributed model training
 * [ ] Play around with quantization, compilation and pruning for you trained models to increase inference speed
@@ -182,30 +182,18 @@ We have implemented a total number of 6 tests. We have followed the intructions 
 > **What is the total code coverage (in percentage) of your code? If you code had an code coverage of 100% (or close**
 > **to), would you still trust it to be error free? Explain you reasoning.**
 >
-> Answer length: 100-200 words.
->
-> Example:
-> *The total code coverage of code is X%, which includes all our source code. We are far from 100% coverage of our **
-> *code and even if we were then...*
->
 > Answer:
 
---- question 8 fill here ---
+The total code coverage of code is 38%. The coverage report shows that the listed files, including `__init__.py` files and `build_features.py`, have 100% coverage. This means that all lines in these files are covered by tests. High coverage percentages in these files are a positive sign, suggesting that tests effectively validate the functionality implemented in these modules. The focus may need to be on increasing coverage in `lightning_train.py`, where a lower percentage suggests areas that are not thoroughly tested. Even if your code has a very high coverage, it doesn't ensure that there are no errors. While good testing can catch many issues, it might miss some complex situations or unique cases. Also, the quality of tests matters; they should be well-crafted to truly check if the code is correct. So, high coverage is good, but it's best when combined with other testing methods like unit tests, integration tests, and manual testing to make sure your software is strong and dependable.
 
 ### Question 9
 
 > **Did you workflow include using branches and pull requests? If yes, explain how. If not, explain how branches and**
 > **pull request can help improve version control.**
 >
-> Answer length: 100-200 words.
->
-> Example:
-> *We made use of both branches and PRs in our project. In our group, each member had an branch that they worked on in*
-> *addition to the main branch. To merge code we ...*
->
 > Answer:
 
---- question 9 fill here ---
+We didn't use branches and pull requests in our workflow. However, if we had, it would have helped by allowing us to work on different parts of the code separately. Branches act like different workspaces for features or fixes. Pull requests then let us propose changes and get them reviewed before adding them to the main code. This helps catch mistakes early, keeps the main code clean, and allows multiple team members to work on things simultaneously without conflicts. Not using branches and pull requests might mean missing out on these benefits, making collaboration less organized and potentially causing issues in the code.
 
 ### Question 10
 
@@ -228,15 +216,9 @@ We have implemented a total number of 6 tests. We have followed the intructions 
 > **multiple operating systems, python version etc. Do you make use of caching? Feel free to insert a link to one of**
 > **your github actions workflow.**
 >
-> Answer length: 200-300 words.
->
-> Example:
-> *We have organized our CI into 3 separate files: one for doing ..., one for running ... testing and one for running*
-> *... . In particular for our ..., we used ... .An example of a triggered workflow can be seen here: <weblink>*
->
 > Answer:
 
---- question 11 fill here ---
+Our continuous integration (CI) setup relies on GitHub Actions, featuring a "Run tests" workflow triggered by pushes and pull requests to the `master` and `main` branches. This workflow, executed on the latest Ubuntu version, follows a sequence of essential steps. It starts by fetching the latest code, proceeds to set up the Python 3.8 environment using the `setup-python` action, and installs project dependencies from `requirements.txt` and `requirements_tests.txt`. The workflow then runs the test suite with pytest, ensuring unit tests are executed successfully. To optimize workflow efficiency, dependencies are cached using the `actions/cache` action, reducing redundant installations. While the current configuration targets Ubuntu, future improvements could involve testing on additional operating systems and Python versions by extending the workflow. You can find the GitHub Actions workflow [here](https://github.com/eduardpuga/MLOPS_group97/actions/workflows/tests.yml).
 
 ## Running code and tracking experiments
 
@@ -399,15 +381,21 @@ We have implemented a total number of 6 tests. We have followed the intructions 
 > **Did you manage to implement monitoring of your deployed model? If yes, explain how it works. If not, explain how**
 > **monitoring would help the longevity of your application.**
 >
-> Answer length: 100-200 words.
->
-> Example:
-> *We did not manage to implement monitoring. We would like to have monitoring implemented such that over time we could*
-> *measure ... and ... that would inform us about this ... behaviour of our application.*
->
 > Answer:
 
---- question 23 fill here ---
+We created a monitoring file (monitoring.py) using the evidently library.
+To run our monitoring experiment we generated some "corrupted" images by rotating our original images (90 degrees).
+Images are not structured tabular data, so we couldn't monitor the changes in the features when new data is added.
+For this reason we decided to monitor the performance of our model when new images are used. 
+The prediction matrices that we decided to include are:
+Accuracy
+Prediction
+Recall
+F1
+
+Our Monitoring code generates both: 
+1) an .html report for an easy inspection of the monitoring results
+2) a dictionary/json file that can be embedded in an automated routine to produce warning about the quality of the new data used in the model
 
 ### Question 24
 
