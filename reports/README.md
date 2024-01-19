@@ -219,6 +219,8 @@ Our continuous integration (CI) setup relies on GitHub Actions, featuring a "Run
 >
 > Answer:
 
+
+
 --- question 12 fill here ---
 
 ### Question 13
@@ -302,7 +304,7 @@ We opted not to utilize Google Compute Engine in our project, choosing instead t
 >
 > Answer:
 
-[Data Storage Figure](figures/data%20Storage.png)
+![Data Storage Figure](figures/data%20Storage.png)
 
 ### Question 20
 
@@ -374,7 +376,7 @@ Our group incurred a total expense of $7.32 for the project. The highest cost wa
 
 We started by implementing our project in our local setup where we get the repository structure using cookie cutter and later we integrate pytorch lightning and torchvision into our code to build the model. Additionally, we implemented several unit tests to check the quality of the code and data. Whenever we commit code and push to github, it auto triggers two images buildings one for training and one for inference. After that both images are pushed into the container registry and after that Vertex AI run the training image to get the model weights that are stored in our GCP bucket. These weights are retrieved by the new service created inside Cloud Run that runs the inference image and automatically deploys our application with FastAPI and serves a method to classify pistachio images.
 
-[figure](figures/Diagram.png)
+![figure](figures/Diagram.png)
 
 ### Question 26
 
@@ -395,3 +397,5 @@ Another little inconvenience that we have encountered has been to deal with some
 > Answer:
 
 1) Student s231938: initial creator of the GitHub repository. Helped in all the lightning related scripts creation. Responsible of the Continous Integration, cache creation and unit testing. Also made the visualization task. Took care of the fullfiment of the good coding practices and contributed to all the docummentation files equally.
+2) Student s231813: Responsible for the project code including torchvision framework, lightning and hyperparameter experiments. Has also taken care for the training logging using Weights and Biases. Helped in the Continuous Integration and Google Cloud setting up. Responsible of the Deployment through Google Cloud Run and FastAPI. Helped in all the storage related tasks and contributed with the documentation equally.
+
