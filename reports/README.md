@@ -14,9 +14,7 @@ where you instead should add your answers. Any other changes may have unwanted c
 generated in the end of the course. For questions where you are asked to include images, start by adding the image to
 the `figures` subfolder (please only use `.png`, `.jpg` or `.jpeg`) and then add the following code in your answer:
 
-```markdown
-![my_image](figures/<image>.<extension>)
-```
+
 
 In addition to this markdown file, we also provide the `report.py` script that provides two utility functions:
 
@@ -212,14 +210,11 @@ Our continuous integration (CI) setup relies on GitHub Actions, featuring a "Run
 > **How did you configure experiments? Did you make use of config files? Explain with coding examples of how you would**
 > **run a experiment.**
 >
-> Answer length: 50-100 words.
->
-> Example:
-> *We used a simple argparser, that worked in the following way: python my_script.py --lr 1e-3 --batch_size 25*
->
 > Answer:
 
+The experiments are configured using the 'click' library for command-line interface (CLI) options and arguments, with required input data filepath and optional settings for learning rate, batch size, and maximum epochs.
 
+python pistachio/src/models/lightning_train.py data/raw --lr 1e-3 --batch_size 25 --max_epochs 2
 
 --- question 12 fill here ---
 
@@ -228,15 +223,11 @@ Our continuous integration (CI) setup relies on GitHub Actions, featuring a "Run
 > **Reproducibility of experiments are important. Related to the last question, how did you secure that no information**
 > **is lost when running experiments and that your experiments are reproducible?**
 >
-> Answer length: 100-200 words.
->
-> Example:
-> *We made use of config files. Whenever an experiment is run the following happens: ... . To reproduce an experiment*
-> *one would have to do ...*
->
 > Answer:
 
---- question 13 fill here ---
+We ensured the reproducibility of our experiments by adopting a Dockerized approach by implementing several Dockerfiles. Each experiment is encapsulated within a Docker container, containing not only the source code but also specific combinations of hyperparameters specified in the entry point of the dockerfile. We managed to perform a few experiments using this approach and to reproduce one of this experiemnts one would have to download the image and run it in its machine.
+
+
 
 ### Question 14
 
@@ -245,15 +236,18 @@ Our continuous integration (CI) setup relies on GitHub Actions, featuring a "Run
 > **inspiration from [this figure](figures/wandb.png). Explain what metrics you are tracking and why they are**
 > **important.**
 >
-> Answer length: 200-300 words + 1 to 3 screenshots.
->
-> Example:
-> *As seen in the first image when have tracked ... and ... which both inform us about ... in our experiments.*
-> *As seen in the second image we are also tracking ... and ...*
->
 > Answer:
 
---- question 14 fill here ---
+
+We tracked our experiments using W&B. We selected several metrics to log and compare all our experiments. The dashboard of our W&B account shows these metrics. On top of that we also displayed some example images of the ones the model was classifying to see that the input of the model was correct.
+
+As seen in the first image we tracked the training loss of the experiments, this is important to see that the models are learning and not overfitting over the time:
+![Training Loss Comparison](figures/train_loss.png)
+As seen in the second image we also compared the validation accuracy of all the experiments we did achieving really impresive scores, this is important because the model is validated using unseen data during the training:
+![Validation Accuracy comparison](figures/val_acc.png)
+As seen in the third image we also displayed example pistachio images before the train.
+![Example images](figures/example.png)
+
 
 ### Question 15
 
@@ -399,3 +393,4 @@ Another little inconvenience that we have encountered has been to deal with some
 1) Student s231938: initial creator of the GitHub repository. Helped in all the lightning related scripts creation. Responsible of the Continous Integration, cache creation and unit testing. Also made the visualization task. Took care of the fullfiment of the good coding practices and contributed to all the docummentation files equally.
 2) Student s231813: Responsible for the project code including torchvision framework, lightning and hyperparameter experiments. Has also taken care for the training logging using Weights and Biases. Helped in the Continuous Integration and Google Cloud setting up. Responsible of the Deployment through Google Cloud Run and FastAPI. Helped in all the storage related tasks and contributed with the documentation equally.
 3) Student s231919: Responsible for the Google Cloud section, including Cloud Storage using DVC, creation of the Trigger and link of hte google cloud with the GitHub repository and creation of the images of the Dockerfiles. Helped in the deployment through Google Cloud Run, in the creation of unit tests for the project, and contributed to the documentation equally.
+4) Student s180768: Researcher for the project idea. Responsible for the monitoring section including Evidently AI. Helped in the code development and Continuos Integration Part. Also responsible of the hyperperameters experiments and helped in the Cloud Storage section. 

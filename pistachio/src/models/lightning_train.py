@@ -99,6 +99,9 @@ class TransferLearningModel(pl.LightningModule):
 
 @click.command()
 @click.argument("input_filepath", type=click.Path(exists=True))
+@click.option("--lr", default=1e-3, help="learning rate to use for training")
+@click.option("--batch_size", default=32, help="batch size to use for training")
+@click.option("--max_epochs", default=1, help="number of epochs to train for")
 def train(input_filepath):
     """Main function."""
     # Load the data
@@ -109,7 +112,7 @@ def train(input_filepath):
 
     wandb_logger = WandbLogger(project="wandb-lightning", job_type="train")
 
-    model = TransferLearningModel()
+    model = TransferLearningModel(lr=1e-3, batch_size=32)
     trainer = pl.Trainer(max_epochs=1, logger=wandb_logger)
     trainer.fit(model=model, datamodule=dm)
 
