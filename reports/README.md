@@ -371,15 +371,9 @@ Our Monitoring code generates both:
 
 > **How many credits did you end up using during the project and what service was most expensive?**
 >
-> Answer length: 25-100 words.
->
-> Example:
-> *Group member 1 used ..., Group member 2 used ..., in total ... credits was spend during development. The service*
-> *costing the most was ... due to ...*
->
 > Answer:
 
---- question 24 fill here ---
+Our group incurred a total expense of $7.32 for the project. The highest cost was attributed to cloud storage, primarily for storing the data and the model. This was followed by the expenses for deploying the model. The least costly aspect was the use of Vertex AI.
 
 ## Overall discussion of project
 
