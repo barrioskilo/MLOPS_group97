@@ -130,15 +130,10 @@ The framework that our team has selected for the implementation of the project h
 > **Explain how you managed dependencies in your project? Explain the process a new team member would have to go**
 > **through to get an exact copy of your environment.**
 >
-> Answer length: 100-200 words
->
-> Example:
-> *We used ... for managing our dependencies. The list of dependencies was auto-generated using ... . To get a*
-> *complete copy of our development environment, one would have to run the following commands*
->
 > Answer:
 
---- question 4 fill here ---
+We have established a requirements.txt file to manage the dependencies within our project. This file lists all the necessary packages for the project to function correctly, so when the project is executed, it automatically checks if these packages are installed and installs any that are missing. This ensures that new team members can easily set up, execute, and modify the project without hassle.
+
 
 ### Question 5
 
@@ -272,15 +267,11 @@ Our continuous integration (CI) setup relies on GitHub Actions, featuring a "Run
 > **Docker is an important tool for creating containerized applications. Explain how you used docker in your**
 > **experiments? Include how you would run your docker images and include a link to one of your docker files.**
 >
-> Answer length: 100-200 words.
->
-> Example:
-> *For our project we developed several images: one for training, inference and deployment. For example to run the*
-> *training docker image: `docker run trainer:latest lr=1e-3 batch_size=64`. Link to docker file: <weblink>*
->
 > Answer:
 
---- question 15 fill here ---
+We did our model's training process in the cloud using Docker, creating a dedicated training.dockerfile. The execution of these Docker images is managed through custom jobs, configured in a config.yaml file that executed a specific docker image on Vertex AI. Furthermore, for the deployment of the model in the cloud, we have crafted a separate Docker file, termed inference.dockerfile.
+
+[Dockerfile of the training](/training.dockerfile)
 
 ### Question 16
 
@@ -351,14 +342,9 @@ We opted not to utilize Google Compute Engine in our project, choosing instead t
 > **Did you manage to deploy your model, either in locally or cloud? If not, describe why. If yes, describe how and**
 > **preferably how you invoke your deployed service?**
 >
-> Answer length: 100-200 words.
->
-> Example:
-> *For deployment we wrapped our model into application using ... . We first tried locally serving the model, which*
-> *worked. Afterwards we deployed it in the cloud, using ... . To invoke the service an user would call*
-> *`curl -X POST -F "file=@file.json"<weburl>`*
->
 > Answer:
+
+We manage to deploy the model both locally and in the cloud, we firstt tried locally serving the model, which worked and then we decided to implemented in the cloud too. To deploy the model we used "inference.dockerfile" in order to create the image and then run inn a container. In order to invoke the fast api to connec with the service deployed we used "https://pistachioapi-y2hpxj763q-ew.a.run.app/docs#/default/classify_image_classify_post"
 
 ### Question 23
 
