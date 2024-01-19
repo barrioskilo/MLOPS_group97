@@ -402,6 +402,10 @@ Our Monitoring code generates both:
 
 --- question 25 fill here ---
 
+We started by implementing our project in our local setup where we get the repository structure using cookie cutter and later we integrate pytorch lightning and torchvision into our code to build the model. Additionally, we implemented several unit tests to check the quality of the code and data. Whenever we commit code and push to github, it auto triggers two images buildings one for training and one for inference. After that both images are pushed into the container registry and after that Vertex AI run the training image to get the model weights that are stored in our GCP bucket. These weights are retrieved by the new service created inside Cloud Run that runs the inference image and automatically deploys our application with FastAPI and serves a method to classify pistachio images.
+
+[figure](figures/Diagram.png)
+
 ### Question 26
 
 > **Discuss the overall struggles of the project. Where did you spend most time and what did you do to overcome these**
