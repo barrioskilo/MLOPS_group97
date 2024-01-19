@@ -139,16 +139,9 @@ We have established a requirements.txt file to manage the dependencies within ou
 
 > **We expect that you initialized your project using the cookiecutter template. Explain the overall structure of your**
 > **code. Did you fill out every folder or only a subset?**
->
-> Answer length: 100-200 words
->
-> Example:
-> *From the cookiecutter template we have filled out the ... , ... and ... folder. We have removed the ... folder*
-> *because we did not use any ... in our project. We have added an ... folder that contains ... for running our*
-> *experiments.*
 > Answer:
 
---- question 5 fill here ---
+For the creation of the initial structure of the project we have make use of the provided template by cookiecutter. After finishing all the code, we revisited the initial structure and deleted the folders which were empty. These folders have been 'notebooks', 'references' and 'data'. We have added new folders to the initial structure to make our project work. We will not mention all the folders here as the final structure can be found in the overall README.md of the project. But for example, the folder related to the tests have been added containing all the different scripts for making the unit tests. Another example has been the deletion of the 'data' folder because we have stored all the necessary data in the cloud.
 
 ### Question 6
 
@@ -198,8 +191,6 @@ We didn't use branches and pull requests in our workflow. However, if we had, it
 > Answer:
 
 We integrated Data Version Control (DVC) into our project through a two-stage approach: Initially, we established a connection between our data and a Google Drive repository,  this setup served as our preliminary versioning system. Subsequently, we transitioned to linking our data with Google Cloud Storage,  this shift enabled us to leverage the cloud's capabilities for maintaining multiple versions of our data, ensuring more robust and scalable data management.
-
---- question 10 fill here ---
 
 ### Question 11
 
@@ -278,15 +269,9 @@ We did our model's training process in the cloud using Docker, creating a dedica
 > **When running into bugs while trying to run your experiments, how did you perform debugging? Additionally, did you**
 > **try to profile your code or do you think it is already perfect?**
 >
-> Answer length: 100-200 words.
->
-> Example:
-> *Debugging method was dependent on group member. Some just used ... and others used ... . We did a single profiling*
-> *run of our main code at some point that showed ...*
->
 > Answer:
 
---- question 16 fill here ---
+Regarding to debugging, we have not performed any special actions. Although we did not try to profile our code, we already know that the code is not perfect and that there are many aspects that could be improved. We have put more attention in building a correct pipeline and focussing in achieving a correct functionality.
 
 ## Working in the cloud
 
@@ -385,16 +370,7 @@ Our group incurred a total expense of $7.32 for the project. The highest cost wa
 > **You can take inspiration from [this figure](figures/overview.png). Additionally in your own words, explain the**
 > **overall steps in figure.**
 >
-> Answer length: 200-400 words
->
-> Example:
->
-> *The starting point of the diagram is our local setup, where we integrated ... and ... and ... into our code.*
-> *Whenever we commit code and puch to github, it auto triggers ... and ... . From there the diagram shows ...*
->
 > Answer:
-
---- question 25 fill here ---
 
 We started by implementing our project in our local setup where we get the repository structure using cookie cutter and later we integrate pytorch lightning and torchvision into our code to build the model. Additionally, we implemented several unit tests to check the quality of the code and data. Whenever we commit code and push to github, it auto triggers two images buildings one for training and one for inference. After that both images are pushed into the container registry and after that Vertex AI run the training image to get the model weights that are stored in our GCP bucket. These weights are retrieved by the new service created inside Cloud Run that runs the inference image and automatically deploys our application with FastAPI and serves a method to classify pistachio images.
 
@@ -405,28 +381,17 @@ We started by implementing our project in our local setup where we get the repos
 > **Discuss the overall struggles of the project. Where did you spend most time and what did you do to overcome these**
 > **challenges?**
 >
-> Answer length: 200-400 words.
->
-> Example:
-> *The biggest challenges in the project was using ... tool to do ... . The reason for this was ...*
->
 > Answer:
 
---- question 26 fill here ---
+The biggest challenge while working in this project has been, by far, dealing with the cloud. It has been the part of the project where we have spent most of the time. When correcting the error, new ones were created. Working in the world of the Cloud has been something new for all of us. Although in the end we ended up liking it, it has been an overall nightmare. Thanks to the help of Nicky, TA's and Google, we finally managed to deal with the Cloud and make our project execute correctly.
+
+Another little inconvenience that we have encountered has been to deal with some merge conflicts in GitHub. As mentioned before, we did not make use of the branches, and it is something that we have ended up regreting. In the beginning, as we were working all together in the same place, there were no problems. However, the last days of the project we have noticed many merge problems and some of the code have been overwritten and so on. So, for the next project, we all know that we will make use of branches.
 
 ### Question 27
 
 > **State the individual contributions of each team member. This is required information from DTU, because we need to**
 > **make sure all members contributed actively to the project**
 >
-> Answer length: 50-200 words.
->
-> Example:
-> *Student sXXXXXX was in charge of developing of setting up the initial cookie cutter project and developing of the*
-> *docker containers for training our applications.*
-> *Student sXXXXXX was in charge of training our models in the cloud and deploying them afterwards.*
-> *All members contributed to code by...*
->
 > Answer:
 
---- question 27 fill here ---
+1) Student s231938: initial creator of the GitHub repository. Helped in all the lightning related scripts creation. Responsible of the Continous Integration, cache creation and unit testing. Also made the visualization task. Took care of the fullfiment of the good coding practices and contributed to all the docummentation files equally.
