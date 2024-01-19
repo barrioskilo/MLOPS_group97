@@ -48,8 +48,8 @@ def make_prediction(filename, model_path):
     print("Predicted class:", predicted_class)
 
 
-example_Kirmizi_path = 'data/raw/Kirmizi_Pistachio/kirmizi 110.jpg'
-make_prediction('transfer_learning_model.pth', example_Kirmizi_path)
+example_Kirmizi_path = "data/raw/Kirmizi_Pistachio/kirmizi 110.jpg"
+make_prediction("transfer_learning_model.pth", example_Kirmizi_path)
 
-example_Siirt_path = 'data/raw/Siirt_Pistachio/siirt 110.jpg'
-make_prediction('transfer_learning_model.pth', example_Siirt_path)
+example_Siirt_path = "data/raw/Siirt_Pistachio/siirt 110.jpg"
+make_prediction("transfer_learning_model.pth", example_Siirt_path)

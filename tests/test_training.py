@@ -1,11 +1,11 @@
+import pytest
 import torch
 from torch.utils.data import DataLoader
-import pytest
-from pistachio.src.models.lightning_train import TransferLearningModel, PistachioDataModule
+
+from pistachio.src.models.lightning_train import PistachioDataModule, TransferLearningModel
 
 
 @pytest.fixture
-
 def test_transfer_learning_model_construction():
     model = TransferLearningModel()
 
@@ -40,9 +40,9 @@ def test_transfer_learning_model_construction():
     assert model.num_workers == 6
 
     # Check if the model has initialized the feature extractor and other components
-    assert hasattr(model, 'feature_extractor')
-    assert hasattr(model, 'fc')
-    assert hasattr(model, 'loss_func')
+    assert hasattr(model, "feature_extractor")
+    assert hasattr(model, "fc")
+    assert hasattr(model, "loss_func")
 
 
 def test_transfer_learning_model_forward_pass():
@@ -67,6 +67,3 @@ def test_transfer_learning_model_configure_optimizers():
     # Check if the optimizer and scheduler are instances of the expected classes
     assert isinstance(optimizer[0], torch.optim.Adam)
     assert isinstance(scheduler[0], torch.optim.lr_scheduler.MultiStepLR)
-
-
-

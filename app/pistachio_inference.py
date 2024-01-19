@@ -1,13 +1,15 @@
 # Import libraries
-from fastapi import FastAPI, File, UploadFile, HTTPException
-from pistachio.src.models.lightning_predict import *
 import os
 
+from fastapi import FastAPI, File, HTTPException, UploadFile
+
+from pistachio.src.models.lightning_predict import *
 
 model_file = "app/models/transfer_learning_model.pth"
 
 # Create FastAPI app
 app = FastAPI()
+
 
 # Define a route for image classification
 @app.post("/classify")
@@ -34,4 +36,3 @@ async def classify_image(file: UploadFile = File(...)):
     except Exception as e:
         # Handle errors and return an HTTP 500 status code
         raise HTTPException(status_code=500, detail=str(e))
-

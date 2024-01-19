@@ -8,6 +8,7 @@ from pytorch_lightning.loggers import WandbLogger
 from torch.optim.lr_scheduler import MultiStepLR
 from torchmetrics import Accuracy
 from torchvision import models
+
 import wandb
 from pistachio.src.data.make_lightning_dataset import PistachioDataModule
 
@@ -106,7 +107,7 @@ def train(input_filepath):
 
     wandb.login(key="e8a7dda19f70f30af4c771281980c6e08b856d96")
 
-    wandb_logger = WandbLogger(project='wandb-lightning', job_type='train')
+    wandb_logger = WandbLogger(project="wandb-lightning", job_type="train")
 
     model = TransferLearningModel()
     trainer = pl.Trainer(max_epochs=1, logger=wandb_logger)

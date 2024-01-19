@@ -1,4 +1,5 @@
 import torch
+
 from pistachio.src.models.lightning_train import TransferLearningModel
 
 
@@ -15,15 +16,12 @@ def test_model_architecture():
     # Assert the existence of model components
     assert isinstance(feature_extractor, torch.nn.Sequential), "The model should have a 'feature_extractor' layer"
     assert isinstance(fc_layers, torch.nn.Sequential), "The model should have an 'fc' layer"
-    
+
     # Assert 'feature_extractor' has resnet layers
     assert isinstance(feature_extractor[0], torch.nn.Conv2d), "The feature extractor should have a Conv2d layer"
-    
+
     # Assert 'fc' has Linear and ReLU layers
     assert isinstance(fc_layers[0], torch.nn.Linear), "The fc layer should have a Linear layer"
     assert isinstance(fc_layers[1], torch.nn.ReLU), "The fc layer should have a ReLU layer"
     assert isinstance(fc_layers[2], torch.nn.Linear), "The fc layer should have another Linear layer"
     assert isinstance(fc_layers[3], torch.nn.Linear), "The fc layer should have another Linear layer"
-
-
-
