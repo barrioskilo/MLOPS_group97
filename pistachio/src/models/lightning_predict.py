@@ -17,7 +17,7 @@ img_test_transforms = transforms.Compose(
 
 # Load the model
 def load_model(model_path):
-    model = TransferLearningModel()  # Instantiate your model class
+    model = TransferLearningModel()
     model.load_state_dict(torch.load(model_path))
     return model
 
@@ -41,16 +41,15 @@ def make_prediction(filename, model_path):
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     outputs = model(img.to(device))
-    #_, predicted = torch.max(outputs.data, 1)
+
     predicted = torch.round(torch.sigmoid(outputs.data)).int()
 
     predicted_class = [key for key, value in class_to_idx.items() if value == predicted.item()]
     print("Predicted class:", predicted_class)
 
 
-# Provide the correct path to your example image
-example_Kirmizi_path = 'data/raw/Kirmizi_Pistachio/kirmizi 110.jpg'  # Adjust the path accordingly
+example_Kirmizi_path = 'data/raw/Kirmizi_Pistachio/kirmizi 110.jpg'
 make_prediction('transfer_learning_model.pth', example_Kirmizi_path)
 
-example_Siirt_path = 'data/raw/Siirt_Pistachio/siirt 110.jpg'  # Adjust the path accordingly
+example_Siirt_path = 'data/raw/Siirt_Pistachio/siirt 110.jpg'
 make_prediction('transfer_learning_model.pth', example_Siirt_path)

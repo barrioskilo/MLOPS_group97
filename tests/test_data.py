@@ -4,10 +4,8 @@ import pytest
 from tests import _PATH_DATA
 
 
-
-# Assuming __init__.py is in the same directory as this script
 init_file_path = os.path.join(os.path.dirname(__file__), '__init__.py')
-exec(open(init_file_path).read())  # Execute __init__.py to get the variables
+exec(open(init_file_path).read())
 
 @pytest.mark.skipif(not os.path.exists("data/processed/processed_data.pt"), reason="Data files not found")
 
@@ -28,8 +26,7 @@ def test_data():
             data_tensor = processed_data['data']
             labels_tensor = processed_data['labels']
 
-            # Example: Check if each image in the data tensor has the correct shape
-            # The shape of each image in your dataset should match the input of your model
+            # Check if each image in the data tensor has the correct shape
             for img in data_tensor:
                 assert img.shape == (3, 600, 600), f"Test failed: Each image should have shape (3, 600, 600), found {img.shape}"
             print("Test passed: All images have the correct shape.")
@@ -48,6 +45,3 @@ def test_data():
         print("All tests passed successfully!")
     else:
         print("No .pt file found in the directory")
-
-# Run the test
-#test_data()

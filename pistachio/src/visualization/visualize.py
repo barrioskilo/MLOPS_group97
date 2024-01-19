@@ -6,7 +6,7 @@ import torch
 import torch.nn as nn
 from torchvision import models, transforms
 from torch.autograd import Variable
-from pistachio.models.model import MyAwesomeModel  # Import your model class here
+from pistachio.models.model import MyAwesomeModel
 
 # Function to load preprocessed data
 def load_processed_data(data_path):
@@ -47,25 +47,20 @@ def visualize_features(features, labels):
     plt.xlabel('Feature Value')
     plt.ylabel('Count')
 
-    # Adjust layout to prevent overlap
     plt.tight_layout()
 
     # Save the visualization
     plt.savefig('reports/figures/visualization.png')
     plt.show()
 
-# Set the path to your pre-trained PyTorch model
 model_path = 'pistachio/models/pistachio_model.pth'
 model = MyAwesomeModel()  # Instantiate your model
 model.load_state_dict(torch.load(model_path))
 model.eval()
 
-# Set the path to your preprocessed data
 processed_data_path = 'data/processed/processed_data.pt'
 images, labels = load_processed_data(processed_data_path)
 
-# Extract intermediate representations
 intermediate_features = extract_intermediate_representations(model, images)
 
-# Visualize features using t-SNE and save the plot
 visualize_features(intermediate_features, labels)

@@ -4,7 +4,6 @@ from pistachio.src.models.lightning_predict import *
 import os
 
 
-# Replace 'your_model_folder' with the actual path to your model folder
 model_file = "app/models/transfer_learning_model.pth"
 
 # Create FastAPI app

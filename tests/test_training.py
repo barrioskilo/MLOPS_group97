@@ -4,7 +4,6 @@ import pytest
 from pistachio.src.models.lightning_train import TransferLearningModel, PistachioDataModule
 
 
-# Mock for the PyTorch Lightning Trainer to avoid actual training
 @pytest.fixture
 
 def test_transfer_learning_model_construction():
@@ -45,12 +44,10 @@ def test_transfer_learning_model_construction():
     assert hasattr(model, 'fc')
     assert hasattr(model, 'loss_func')
 
-    # Add more assertions based on your specific requirements
 
 def test_transfer_learning_model_forward_pass():
     model = TransferLearningModel()
 
-    # Mock input batch for forward pass
     batch_size = 32
     input_batch = torch.randn(batch_size, 3, 224, 224)
 
@@ -60,7 +57,6 @@ def test_transfer_learning_model_forward_pass():
     # Check if the output has the expected shape
     assert output.shape == (batch_size, 1)
 
-    # Add more assertions based on your specific requirements
 
 def test_transfer_learning_model_configure_optimizers():
     model = TransferLearningModel()
@@ -71,11 +67,6 @@ def test_transfer_learning_model_configure_optimizers():
     # Check if the optimizer and scheduler are instances of the expected classes
     assert isinstance(optimizer[0], torch.optim.Adam)
     assert isinstance(scheduler[0], torch.optim.lr_scheduler.MultiStepLR)
-
-    # Add more assertions based on your specific requirements
-
-# Add more tests as needed
-
 
 
 

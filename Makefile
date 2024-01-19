@@ -26,18 +26,8 @@ requirements: test_environment
 	$(PYTHON_INTERPRETER) -m pip install -r requirements.txt
 	$(PYTHON_INTERPRETER) -m pip install -e .
 
-## Make Dataset
-data: requirements
-	$(PYTHON_INTERPRETER) pistachio/src/data/make_dataset.py data/raw data/processed/processed_data.pt
-
-train: requirements
-	$(PYTHON_INTERPRETER) pistachio/src/models/train_model.py 
-
 train_lightning: requirements
 	$(PYTHON_INTERPRETER) pistachio/src/models/lightning_train.py data/raw
-
-predict: requirements
-	$(PYTHON_INTERPRETER) pistachio/src/models/predict_model.py pistachio/models/pistachio_model.pth data/processed/example_images.npy
 
 predict_lightning: requirements
 	$(PYTHON_INTERPRETER) pistachio/src/models/lightning_predict.py
